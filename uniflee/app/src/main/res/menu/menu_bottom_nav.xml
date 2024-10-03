@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fragment_discharge"
+        android:title="분리배출"
+        android:icon="@drawable/ic_menu1"/>
+    <item
+        android:id="@+id/fragment_store"
+        android:title="스토어"
+        android:icon="@drawable/ic_menu2"/>
+    <item
+        android:id="@+id/fragment_membership"
+        android:title="멤버쉽"
+        android:icon="@drawable/ic_menu3"/>
+    <item
+        android:id="@+id/fragment_my"
+        android:title="마이"
+        android:icon="@drawable/ic_menu4"/>
+</menu>
