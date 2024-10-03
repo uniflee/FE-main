@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/fragment_home"
-        android:title="홈"
+        android:id="@+id/fragment_discharge"
+        android:title="분리배출"
         android:icon="@drawable/ic_menu1"/>
     <item
-        android:id="@+id/fragment_search"
-        android:title="검색"
+        android:id="@+id/fragment_store"
+        android:title="스토어"
         android:icon="@drawable/ic_menu2"/>
     <item
-        android:id="@+id/fragment_favorite"
-        android:title="즐겨찾기"
+        android:id="@+id/fragment_membership"
+        android:title="멤버쉽"
         android:icon="@drawable/ic_menu3"/>
     <item
-        android:id="@+id/fragment_settings"
-        android:title="설정"
+        android:id="@+id/fragment_my"
+        android:title="마이"
         android:icon="@drawable/ic_menu4"/>
 </menu>
