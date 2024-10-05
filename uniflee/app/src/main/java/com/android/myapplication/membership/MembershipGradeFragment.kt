@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.android.myapplication.R
 import com.android.myapplication.databinding.FragmentMembershipGradeBinding
-import com.android.myapplication.databinding.FragmentMembershipTipsBinding
 
 class MembershipGradeFragment : Fragment() {
     private var _binding: FragmentMembershipGradeBinding?=null

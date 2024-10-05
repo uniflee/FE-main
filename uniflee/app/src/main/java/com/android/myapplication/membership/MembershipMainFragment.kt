@@ -26,22 +26,13 @@ class MembershipMainFragment : Fragment() {
                 .commitAllowingStateLoss()
         }
         binding.goGradeInfo.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, MembershipGradeInfoFragment())
-                .addToBackStack(null) // 백스택에 추가해서 뒤로 가기 가능
-                .commitAllowingStateLoss()
+
         }
         binding.goGradeTips.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, MembershipTipsFragment())
-                .addToBackStack(null) // 백스택에 추가해서 뒤로 가기 가능
-                .commitAllowingStateLoss()
+
         }
         binding.goGradeBenefit.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, MembershipBenefitFragment())
-                .addToBackStack(null) // 백스택에 추가해서 뒤로 가기 가능
-                .commitAllowingStateLoss()
+
         }
         return root
     }
