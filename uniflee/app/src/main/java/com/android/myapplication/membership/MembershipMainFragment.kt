@@ -1,5 +1,6 @@
 package com.android.myapplication.membership
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,13 +27,13 @@ class MembershipMainFragment : Fragment() {
                 .commitAllowingStateLoss()
         }
         binding.goGradeInfo.setOnClickListener {
-
+            startActivity(Intent(context, MembershipInfoActivity()::class.java))
         }
         binding.goGradeTips.setOnClickListener {
-
+            startActivity(Intent(context, MembershipTipsActivity()::class.java))
         }
         binding.goGradeBenefit.setOnClickListener {
-
+            startActivity(Intent(context, MembershipBenefitActivity()::class.java))
         }
         return root
     }
