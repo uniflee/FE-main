@@ -1,30 +1,26 @@
 package com.android.myapplication.store
 
-import android.content.Intent
-import android.graphics.Paint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.R
+import com.android.myapplication.databinding.FragmentDesignerDetailsBinding
 import com.android.myapplication.databinding.FragmentStoreMainBinding
 
+class DesignerDetailsFragment : Fragment() {
 
-class StoreMainFragment : Fragment() {
-
-    private var _binding: FragmentStoreMainBinding?=null
+    private var _binding: FragmentDesignerDetailsBinding?=null
     private val binding get() = _binding!!
 
-    private val productitems = mutableListOf<ProductContents>()
-    private val designeritems = mutableListOf<ProductContents>()
+    private val items = mutableListOf<ProductContents>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentStoreMainBinding.inflate(inflater, container, false)
+        _binding = FragmentDesignerDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 //        binding.goGradeBtn.setOnClickListener {
