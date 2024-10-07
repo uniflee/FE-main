@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/pretendardbold"
             android:text="멤버십 등급 제도"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
@@ -55,12 +55,13 @@
             android:textSize="18sp"
             android:textColor="@color/text"
             android:layout_marginTop="6dp"
+            android:fontFamily="@font/pretendardregular"
             android:text="배출을 하면 할수록" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/main"
-            android:textStyle="bold"
+            android:fontFamily="@font/pretendardbold"
             android:textSize="24sp"
             android:text="올라가는 멤버십 등급!"/>
     </LinearLayout>
@@ -90,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/pretendardbold"
                 android:textColor="@color/text"
                 android:textSize="16sp"
                 android:text="올바른 분리배출 확인하기"/>
@@ -100,6 +101,7 @@
                 android:textColor="@color/text"
                 android:textSize="16sp"
                 android:gravity="center"
+                android:fontFamily="@font/pretendardlight"
                 android:text="유니플리 분리배출 콘텐츠를 통해\n폐기물의 올바른 분리배출법을 확인합니다"/>
         </LinearLayout>
         <LinearLayout
@@ -120,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/pretendardbold"
                 android:textColor="@color/text"
                 android:textSize="16sp"
                 android:text="분리 배출 등록하기"/>
@@ -130,6 +132,7 @@
                 android:textColor="@color/text"
                 android:textSize="16sp"
                 android:gravity="center"
+                android:fontFamily="@font/pretendardlight"
                 android:text="안내되는 올바른 분리배출법에 따라\n배출한 다음 등록하여 포인트를 획득하세요"/>
         </LinearLayout>
         <LinearLayout
@@ -150,7 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/pretendardbold"
                 android:textColor="@color/text"
                 android:textSize="16sp"
                 android:text="꾸준한 분리 배출"/>
@@ -160,6 +163,7 @@
                 android:textColor="@color/text"
                 android:textSize="16sp"
                 android:gravity="center"
+                android:fontFamily="@font/pretendardlight"
                 android:text="앞선 과정들을 계속해서 반복해 보세요!\n지구도 건강해지고,멤버십 등급도 올라갑니다"/>
         </LinearLayout>
     </LinearLayout>

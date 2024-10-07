@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/main"
                     android:textSize="16sp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/pretendardbold"
                     android:text="환경 리포트" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,6 +92,7 @@
                     android:layout_marginTop="3dp"
                     android:textSize="14sp"
                     android:textColor="#626262"
+                    android:fontFamily="@font/pretendardmedium"
                     android:text="나는 과연 환경에 얼마나 기여하고 있을까?"/>
             </LinearLayout>
         </LinearLayout>
@@ -121,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/text"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/pretendardbold"
                     android:text="해양 오염 방지"/>
                 <LinearLayout
                     app:layout_constraintTop_toBottomOf="@id/title_1"
@@ -140,12 +141,13 @@
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
                             android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardextralight"
                             android:text="약 "/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
-                            android:textStyle="bold"
+                            android:fontFamily="@font/pretendardsemibold"
                             android:textColor="@color/text"
                             android:text="10kg의 플라스틱"/>
                         <TextView
@@ -153,6 +155,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
                             android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardextralight"
                             android:text="이"/>
                     </LinearLayout>
                     <TextView
@@ -160,6 +163,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="@color/text"
+                        android:fontFamily="@font/pretendardextralight"
                         android:text="해양에 유입되는 것을\n방지하고 있어요!"/>
                 </LinearLayout>
 
@@ -205,19 +209,21 @@
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
                             android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardextralight"
                             android:text="약 "/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
                             android:textColor="@color/text"
-                            android:textStyle="bold"
+                            android:fontFamily="@font/pretendardsemibold"
                             android:text="100khw"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
                             android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardextralight"
                             android:text="의 에너지를"/>
                     </LinearLayout>
                     <TextView
@@ -225,6 +231,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="@color/text"
+                        android:fontFamily="@font/pretendardextralight"
                         android:text="절약하고 있어요!"/>
                 </LinearLayout>
 
@@ -268,12 +275,13 @@
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
                             android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardextralight"
                             android:text="약 "/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
-                            android:textStyle="bold"
+                            android:fontFamily="@font/pretendardsemibold"
                             android:textColor="@color/text"
                             android:text="100kg"/>
                         <TextView
@@ -281,6 +289,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
                             android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardextralight"
                             android:text="의 Co2를"/>
                     </LinearLayout>
                     <TextView
@@ -288,6 +297,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="@color/text"
+                        android:fontFamily="@font/pretendardextralight"
                         android:text="절약하고 있어요!"/>
                 </LinearLayout>
 
