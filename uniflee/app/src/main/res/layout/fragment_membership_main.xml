@@ -25,6 +25,7 @@
             android:layout_marginBottom="26dp"
             android:textColor="@color/text"
             android:textSize="20sp"
+            android:fontFamily="@font/pretendardregular"
             android:text="과연 나는 얼마나\n환경 보호에 기여하고 있을까?"/>
         <TextView
             android:id="@+id/go_grade_btn"
@@ -36,7 +37,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/pretendardsemibold"
             android:text="내 등급 확인하기"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
@@ -62,7 +63,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:textColor="@color/main"
-                android:textStyle="bold"
+                android:fontFamily="@font/pretendardbold"
                 android:text="환경 멤버십"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -70,7 +71,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/text"
-                android:textStyle="bold"
+                android:fontFamily="@font/pretendardbold"
                 android:text="더 알아보기"/>
         </LinearLayout>
         <LinearLayout
@@ -100,6 +101,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:textSize="14sp"
                     android:textColor="#3F3F3F"
+                    android:fontFamily="@font/pretendardsemibold"
                     android:layout_marginStart="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -132,6 +134,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:textSize="14sp"
                     android:textColor="#3F3F3F"
+                    android:fontFamily="@font/pretendardsemibold"
                     android:layout_marginStart="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -165,6 +168,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:textSize="14sp"
                     android:textColor="#3F3F3F"
+                    android:fontFamily="@font/pretendardsemibold"
                     android:layout_marginStart="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
