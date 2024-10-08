@@ -1,8 +1,8 @@
 package com.android.myapplication.store
 
-data class ProductContents (
+data class PaymentContents (
     val ProductImage : Int,
-    val StoreName : String,
+    val DesignerName : String,
     val ProductName : String,
     val ProductPrice : Int
 )
