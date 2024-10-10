@@ -174,7 +174,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_goods"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="24dp"/>
 
             <!-- 이미지 옆으로 넘기는 거 구현하면 페이지표시 이미지 들어가는 부분 -->

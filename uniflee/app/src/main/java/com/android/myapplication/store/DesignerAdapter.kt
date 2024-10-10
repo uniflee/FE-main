@@ -3,17 +3,20 @@ package com.android.myapplication.store
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.android.myapplication.databinding.CartItemBinding
 import com.android.myapplication.databinding.DesignerItemBinding
-import com.android.myapplication.databinding.ProductItemBinding
 
-class DesignerAdapter(val items: List<DesignerContents>) : RecyclerView.Adapter<DesignerAdapter.MyViewHolder>(){
+class DesignerAdapter(
+    val items: List<DesignerContents>,
+    val itemClickListener: (DesignerContents) -> Unit
+) : RecyclerView.Adapter<DesignerAdapter.MyViewHolder>(){
 
     inner class MyViewHolder(private val binding: DesignerItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: DesignerContents) {
             binding.rvDesignerImage.setImageResource(item.Image)
             binding.rvRank.text = item.Rank.toString()
             binding.rvDesignerName.text = item.DesignerName
+
+            binding.root.setOnClickListener { itemClickListener(item) }
         }
     }
 

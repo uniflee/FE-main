@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.databinding.ProductItemBinding
 
-class ProductAdapter(val items: List<ProductContents>) : RecyclerView.Adapter<ProductAdapter.MyViewHolder>(){
+class ProductAdapter(val items: List<ProductContents>, val itemClickListener : (ProductContents) -> Unit) : RecyclerView.Adapter<ProductAdapter.MyViewHolder>(){
 
     inner class MyViewHolder(private val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: ProductContents) {
@@ -13,6 +13,7 @@ class ProductAdapter(val items: List<ProductContents>) : RecyclerView.Adapter<Pr
             binding.rvStore.text = item.StoreName
             binding.rvProduct.text = item.ProductName
             binding.rvPrice.text = item.ProductPrice.toString()
+            binding.root.setOnClickListener { itemClickListener(item) }
         }
     }
 

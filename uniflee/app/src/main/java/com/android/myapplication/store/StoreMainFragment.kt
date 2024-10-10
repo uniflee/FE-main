@@ -8,11 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.R
 import com.android.myapplication.databinding.FragmentStoreMainBinding
 import com.android.myapplication.membership.MembershipGradeFragment
-
 
 class StoreMainFragment : Fragment() {
 
@@ -33,18 +31,8 @@ class StoreMainFragment : Fragment() {
                 .commitAllowingStateLoss()
         }
 
-        binding.rvDesigner.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, DesignerDetailsFragment())
-                .addToBackStack(null) // 백스택에 추가해서 뒤로 가기 가능
-                .commitAllowingStateLoss()
-        }
-        binding.rvGoods.setOnClickListener {
-            startActivity(Intent(context, ProductDetailsActivity()::class.java))
-        }
-
         binding.shoppingcartBtn.setOnClickListener {
-            startActivity(Intent(context, ShoppingCartActivity()::class.java))
+            startActivity(Intent(context, StoreCartActivity()::class.java))
         }
 
         val itemList = listOf(
@@ -55,7 +43,15 @@ class StoreMainFragment : Fragment() {
         )
 
         binding.rvGoods.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.rvGoods.adapter = ProductAdapter(itemList)
+        binding.rvGoods.adapter = ProductAdapter(itemList) { item ->
+            val intent = Intent(context, StoreProductDetailsActivity::class.java).apply {
+                putExtra("PRODUCT_IMAGE", item.ProductImage)
+                putExtra("STORE_NAME", item.StoreName)
+                putExtra("PRODUCT_NAME", item.ProductName)
+                putExtra("PRODUCT_PRICE", item.ProductPrice)
+            }
+            startActivity(intent)
+        }
 
         val DesignerList = listOf(
             DesignerContents(1, R.drawable.img_designerprofile, "미친 감각 디자이너 1"),
@@ -63,8 +59,15 @@ class StoreMainFragment : Fragment() {
             DesignerContents(3, R.drawable.img_designerprofile, "기상천외한 발상 디자이너 3")
         )
 
+        val DesignerClickListener: (DesignerContents) -> Unit = { item ->
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, StoreDesignerDetailsFragment())
+                .addToBackStack(null) // 백스택에 추가해서 뒤로 가기 가능
+                .commitAllowingStateLoss()
+        }
+
         binding.rvDesigner.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvDesigner.adapter = DesignerAdapter(DesignerList)
+        binding.rvDesigner.adapter = DesignerAdapter(DesignerList, DesignerClickListener)
 
         return root
     }
