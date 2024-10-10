@@ -18,6 +18,7 @@
         android:src="@drawable/img_app_logo"/>
 
     <ImageView
+        android:id="@+id/go_camera"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/logo"

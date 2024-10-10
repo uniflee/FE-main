@@ -16,7 +16,6 @@ class MembershipGradeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMembershipGradeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
         binding.backBtn.setOnClickListener {
             val fragmentManager = requireActivity().supportFragmentManager
@@ -25,6 +24,6 @@ class MembershipGradeFragment : Fragment() {
             transaction.addToBackStack(null)
             transaction.commit()
         }
-        return root
+        return binding.root
     }
 }
