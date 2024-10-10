@@ -18,6 +18,13 @@ class MembershipGradeFragment : Fragment() {
         _binding = FragmentMembershipGradeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        binding.backBtn.setOnClickListener {
+            val fragmentManager = requireActivity().supportFragmentManager
+            val transaction = fragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, MembershipMainFragment())
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
         return root
     }
 }

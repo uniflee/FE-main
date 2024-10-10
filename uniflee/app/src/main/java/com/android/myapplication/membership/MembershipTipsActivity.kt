@@ -5,17 +5,20 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.android.myapplication.MainActivity
 import com.android.myapplication.R
+import com.android.myapplication.databinding.ActivityMainBinding
+import com.android.myapplication.databinding.ActivityMembershipTipsBinding
 
 class MembershipTipsActivity : AppCompatActivity() {
+    private val binding: ActivityMembershipTipsBinding by lazy {
+        ActivityMembershipTipsBinding.inflate(layoutInflater)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_membership_tips)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        setContentView(binding.root)
+        binding.backBtn.setOnClickListener {
+            onBackPressed()
         }
     }
 }
