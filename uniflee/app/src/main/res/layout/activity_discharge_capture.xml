@@ -39,7 +39,7 @@
         android:layout_marginStart="21dp"
         android:layout_marginEnd="21dp"
         android:layout_marginBottom="75dp"
-        android:background="@drawable/bg_go_grade_btn"
+        android:background="@drawable/bg_discharge_btn"
         android:textColor="@color/white"
         android:fontFamily="@font/pretendardsemibold"
         android:textSize="18sp"

@@ -16,6 +16,7 @@ class MembershipTipsActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(binding.root)
         binding.backBtn.setOnClickListener {
             onBackPressed()
