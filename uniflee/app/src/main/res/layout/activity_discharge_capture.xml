@@ -24,11 +24,10 @@
         <!-- 둥근 모서리 안의 투명 영역과 바깥의 어두운 부분 -->
         <View
             android:id="@+id/overlay_view"
-            android:layout_marginBottom="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:background="@drawable/bg_overlay_mask" />
+            android:background="@drawable/img_angle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -56,22 +55,12 @@
         android:layout_marginTop="30dp"
         android:src="@drawable/ic_close"/>
 
-    <ImageView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img_angle"/>
-
     <LinearLayout
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="60dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
