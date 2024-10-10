@@ -57,6 +57,7 @@ dependencies {
 
     // Optional: CameraX extensions
     implementation ("androidx.camera:camera-extensions:1.3.4")
+    implementation(libs.androidx.activity)
 
     // 테스트 종속성
     testImplementation ("junit:junit:4.13.2")
