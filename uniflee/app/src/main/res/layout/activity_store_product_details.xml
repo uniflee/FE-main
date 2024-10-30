@@ -40,36 +40,6 @@
             android:textStyle="bold"
             android:text=""/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="30dp"
-            android:src="@drawable/ic_shoppingcart"/>
-
-        <ImageView
-            android:id="@+id/shoppingcart_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="15dp"
-            android:layout_marginEnd="23dp"
-            android:src="@drawable/ic_shoppingcart_ec"/>
-        <TextView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="15dp"
-            android:layout_marginEnd="23dp"
-            android:gravity="center"
-            android:text="0"
-            android:textColor="#FFFFFF"
-            android:textSize="11sp"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
@@ -158,7 +128,7 @@
             <FrameLayout
                 android:id="@+id/fragment_container"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"/>
+                android:layout_height="wrap_content"/>
 
 
         </LinearLayout>

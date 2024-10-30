@@ -29,35 +29,6 @@
             android:textStyle="bold"
             android:text="리워드 스토어"/>
 
-        <ImageView
-            android:id="@+id/shoppingcart_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="30dp"
-            android:src="@drawable/ic_shoppingcart"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="15dp"
-            android:layout_marginEnd="23dp"
-            android:src="@drawable/ic_shoppingcart_ec"/>
-        <TextView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="15dp"
-            android:layout_marginEnd="23dp"
-            android:gravity="center"
-            android:text="0"
-            android:textColor="#FFFFFF"
-            android:textSize="11sp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -177,24 +148,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="24dp"/>
 
-            <!-- 이미지 옆으로 넘기는 거 구현하면 페이지표시 이미지 들어가는 부분 -->
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginBottom="12dp"
-                android:src="@drawable/img_bestdesignerdesc"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_designer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginBottom="34dp"/>
-
-            <!-- 이미지 옆으로 넘기는 거 구현하면 페이지표시 이미지 들어가는 부분 -->
 
         </LinearLayout>
 

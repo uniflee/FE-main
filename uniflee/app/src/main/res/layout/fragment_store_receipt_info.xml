@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".store.StoreReceiptInfoFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".store.StoreReceiptInfoFragment"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:layout_marginStart="39dp"
+        android:textSize="12sp"
+        android:fontFamily="@font/pretendardbold"
         android:text="수령 안내" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="39dp"
+        android:textSize="12sp"
+        android:fontFamily="@font/pretendardregular"
+        android:text="미래관 238호"/>
+
+</LinearLayout>
