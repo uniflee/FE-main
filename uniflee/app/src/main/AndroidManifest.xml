@@ -22,6 +22,15 @@
             android:name=".discharge.DischargeGuideActivity"
             android:exported="false" />
         <activity
+            android:name=".store.StorePaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.StoreCartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".store.StoreProductDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".discharge.DischargeNewRewardActivity"
             android:exported="false" />
         <activity
