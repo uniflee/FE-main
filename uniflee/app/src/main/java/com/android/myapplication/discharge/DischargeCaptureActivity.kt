@@ -1,6 +1,7 @@
 package com.android.myapplication.discharge
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -41,7 +42,8 @@ class DischargeCaptureActivity : AppCompatActivity() {
 
         // 버튼 클릭 시 이벤트 처리
         btnConfirm.setOnClickListener {
-            // 분리배출 방법 확인 로직 추가
+            val intent = Intent(this, DischargeGuideActivity::class.java)
+            startActivity(intent)
         }
     }
     private fun startCamera() {
