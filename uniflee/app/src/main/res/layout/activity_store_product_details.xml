@@ -10,13 +10,11 @@
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headerLayout"
+        android:id="@+id/title"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="9dp"
-        app:layout_constraintTop_toTopOf="parent">
-
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/back_btn"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +24,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:src="@drawable/ic_back_btn"/>
-
         <TextView
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,9 +34,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/pretendardbold"
             android:text=""/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
@@ -64,6 +60,7 @@
                 android:layout_marginStart="24dp"
                 android:text="디자이너명"
                 android:textSize="14sp"
+                android:fontFamily="@font/pretendardregular"
                 android:textColor="#000000"/>
 
             <TextView
@@ -73,7 +70,7 @@
                 android:layout_marginStart="24dp"
                 android:text="제품명"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/pretendardsemibold"
                 android:textColor="#000000"/>
 
             <TextView
@@ -83,7 +80,7 @@
                 android:layout_marginStart="24dp"
                 android:text="6,000 포인트"
                 android:textSize="20sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/pretendardextrabold"
                 android:textColor="#000000"/>
 
             <TextView
@@ -94,12 +91,12 @@
                 android:layout_marginBottom="24dp"
                 android:text="제품 구분 (hdpe 업사이클링 키링)"
                 android:textSize="14sp"
+                android:fontFamily="@font/pretendardregular"
                 android:textColor="#000000"/>
             
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="47dp"
-                android:weightSum="2"
                 android:orientation="horizontal">
 
                 <TextView
@@ -110,8 +107,7 @@
                     android:text="정보"
                     android:gravity="center"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:fontFamily="@font/pretendardsemibold"/>
 
                 <TextView
                     android:id="@+id/tv_receiptbtn"
@@ -121,8 +117,29 @@
                     android:text="수령 안내"
                     android:gravity="center"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:fontFamily="@font/pretendardsemibold"/>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/underline_info"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:background="#00FF0000"/>
+
+                <View
+                    android:id="@+id/underline_receipt"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:background="#00FF0000"/>
             </LinearLayout>
 
             <FrameLayout

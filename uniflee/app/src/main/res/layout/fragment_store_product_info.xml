@@ -2,9 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".store.StoreProductInfoFragment">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/img_stepforearth"/>
 
     <TextView
         android:id="@+id/purchase_btn"
@@ -19,19 +27,14 @@
         android:text="구매하기"
         android:gravity="center"
         android:textColor="#FFFFFF"
-        android:fontFamily="@font/pretendardbold"
+        android:fontFamily="@font/pretendardsemibold"
         android:textSize="18sp"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_info"
         app:layout_constraintTop_toBottomOf="@id/purchase_btn"
-        android:layout_marginTop="46dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </ScrollView>
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

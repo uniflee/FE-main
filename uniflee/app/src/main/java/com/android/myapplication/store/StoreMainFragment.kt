@@ -35,6 +35,7 @@ class StoreMainFragment : Fragment() {
             ProductContents(R.drawable.bg_gray, "디자이너1", "상품1", 1111),
             ProductContents(R.drawable.bg_gray, "디자이너2", "상품2", 2222),
             ProductContents(R.drawable.bg_gray, "디자이너3", "상품3", 3333),
+            ProductContents(R.drawable.bg_gray, "디자이너3", "상품3", 3333),
             ProductContents(R.drawable.bg_gray, "디자이너4", "상품4", 4444)
         )
 
