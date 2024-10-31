@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.myapplication.R
 import com.android.myapplication.databinding.FragmentStoreDesignerDetailsBinding
+import com.android.myapplication.membership.MembershipMainFragment
 
 class StoreDesignerDetailsFragment : Fragment() {
 
@@ -21,6 +22,14 @@ class StoreDesignerDetailsFragment : Fragment() {
     ): View {
         _binding = FragmentStoreDesignerDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        binding.backBtn.setOnClickListener {
+            val fragmentManager = requireActivity().supportFragmentManager
+            val transaction = fragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, StoreMainFragment())
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
 
         val itemList = listOf(
             ProductContents(R.drawable.bg_gray, "디자이너1", "상품1", 1111),
