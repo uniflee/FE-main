@@ -33,13 +33,17 @@ class LogInActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
+
         binding.loginBtn.setOnClickListener {
             openLoginWebPage()
             GlobalScope.launch(Dispatchers.IO) {
                 val res = apiService.userLogin()
                 Log.e("응답", res.toString())
             }
+            // 앱 링크 데이터 처리
+            handleAppLink(intent)
         }
+
     }
     fun openLoginWebPage() {
         GlobalScope.launch(Dispatchers.IO) {
@@ -55,5 +59,16 @@ class LogInActivity : AppCompatActivity() {
             }
         }
 
+    }
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        handleAppLink(intent)
+    }
+
+    private fun handleAppLink(intent: Intent) {
+        intent.data?.let { uri: Uri ->
+            // 여기서 uri를 처리하는 코드 작성
+            // 예: 특정 화면으로 이동, 데이터 로드 등
+        }
     }
 }
