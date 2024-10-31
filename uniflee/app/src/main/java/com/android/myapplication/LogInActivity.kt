@@ -26,41 +26,34 @@ class LogInActivity : AppCompatActivity() {
     private val binding: ActivityLogInBinding by lazy {
         ActivityLogInBinding.inflate(layoutInflater)
     }
+    // api 연결
+    val apiService = RetrofitClient.apiservice
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
-        // api 연결
-        val apiService = RetrofitClient.apiservice
 
-        var success = false
         binding.loginBtn.setOnClickListener {
-//            openLoginWebPage()
+            openLoginWebPage()
             GlobalScope.launch(Dispatchers.IO) {
-                try {
-                    val responseData = apiService.getLoginUrl()
-                    val url = "https://uniflee.alpha.cs.kookmin.ac.kr/oauth2/authorization/kookmin"
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    startActivity(intent)
-                    Log.e("200", responseData.toString())
-                    val res = apiService.userLogin()
-                    Log.e("응답", res.toString())
-//                    success = true
-                } catch (e: Exception) {
-                    Log.e("Error", e.message.toString()) // 에러 로그
-                }
+                val res = apiService.userLogin()
+                Log.e("응답", res.toString())
             }
-
-//            if (success){
-//                val intent = Intent(this, MainActivity::class.java)
-//                startActivity(intent)
-//            }
         }
     }
     fun openLoginWebPage() {
-        val loginUrl = "https://uniflee.alpha.cs.kookmin.ac.kr/oauth2/authorization/kookmin"
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val responseData = apiService.getLoginUrl()
+                val url = "https://uniflee.alpha.cs.kookmin.ac.kr/oauth2/authorization/kookmin"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+                Log.e("200", responseData.toString())
 
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(loginUrl))
-        startActivity(intent)
+            } catch (e:Exception) {
+                Log.e("Error", e.message.toString())
+            }
+        }
+
     }
 }
