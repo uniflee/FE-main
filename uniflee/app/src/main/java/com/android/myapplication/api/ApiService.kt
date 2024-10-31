@@ -1,5 +1,6 @@
 package com.android.myapplication.api
 
+import com.android.myapplication.dto.Login
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -12,8 +13,9 @@ interface ApiService {
     @POST("/login")
     suspend fun designerLogin()
     @GET("/oauth2/authorization/kookmin")
-    suspend fun userLogin()
-
+    suspend fun userLogin(): Login
+    @GET("/oauth2/authorization/kookmin")
+    suspend fun getLoginUrl(): retrofit2.Response<Unit>
     // google-controller
     @POST("/api/google/write")
     suspend fun addExcelList()
