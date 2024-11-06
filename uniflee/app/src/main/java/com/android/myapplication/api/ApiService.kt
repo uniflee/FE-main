@@ -33,6 +33,7 @@ interface ApiService {
     suspend fun userLogin(): Login
     @GET("/oauth2/authorization/kookmin")
     suspend fun getLoginUrl(): retrofit2.Response<Unit>
+
     // google-controller
     // 아직 개발 안됨
     @POST("/api/google/write")
@@ -117,11 +118,11 @@ interface ApiService {
     suspend fun newItem(
         @Header("Authorization") Authorization: String,
         @Body data : ItemRequestDto
-    ) : String
+    )
     @DELETE("/api/item")
     suspend fun deleteItem(
         @Header("Authorization") Authorization: String
-    ) : String
+    )
     @PATCH("/api/item")
     suspend fun modifyItem(
         @Header("Authorization") Authorization: String,
