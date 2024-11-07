@@ -29,10 +29,6 @@ interface ApiService {
         @Query("username") username: String,
         @Query("password") password: String
     ) : DesignerInfoResponse
-    @GET("/oauth2/authorization/kookmin")
-    suspend fun userLogin(): Login
-    @GET("/oauth2/authorization/kookmin")
-    suspend fun getLoginUrl(): retrofit2.Response<Unit>
 
     // google-controller
     // 아직 개발 안됨

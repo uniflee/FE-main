@@ -1,6 +1,8 @@
 package com.android.myapplication
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +25,8 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 
 class LogInActivity : AppCompatActivity() {
+
+
     private val binding: ActivityLogInBinding by lazy {
         ActivityLogInBinding.inflate(layoutInflater)
     }
@@ -32,43 +36,39 @@ class LogInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
-
+        handleAppLink(intent)
 
         binding.loginBtn.setOnClickListener {
             openLoginWebPage()
-            GlobalScope.launch(Dispatchers.IO) {
-                val res = apiService.userLogin()
-                Log.e("응답", res.toString())
-            }
-            // 앱 링크 데이터 처리
-            handleAppLink(intent)
         }
 
     }
-    fun openLoginWebPage() {
-        GlobalScope.launch(Dispatchers.IO) {
-            try {
-                val responseData = apiService.getLoginUrl()
-                val url = "https://uniflee.alpha.cs.kookmin.ac.kr/oauth2/authorization/kookmin"
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                startActivity(intent)
-                Log.e("200", responseData.toString())
-
-            } catch (e:Exception) {
-                Log.e("Error", e.message.toString())
+    private fun handleAppLink(intent: Intent) {
+        intent.data?.let { uri: Uri ->
+            when (uri.path) {
+                "/token" -> {
+                    // URI의 쿼리 파라미터를 가져옴
+                    val token = uri.getQueryParameter("t")
+                    val rtoken = uri.getQueryParameter("r")
+                    // 해당 화면으로 이동할 인텐트 생성
+                    val intent = Intent(this, MainActivity::class.java).apply {
+                        Log.e("token",token.toString())
+                        // pref에 저장
+                        App.prefs.addItem("token", token.toString())
+                    }
+                    startActivity(intent)
+                }
             }
         }
-
     }
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         handleAppLink(intent)
     }
-
-    private fun handleAppLink(intent: Intent) {
-        intent.data?.let { uri: Uri ->
-            // 여기서 uri를 처리하는 코드 작성
-            // 예: 특정 화면으로 이동, 데이터 로드 등
-        }
+    fun openLoginWebPage() {
+        val url = "https://uniflee.alpha.cs.kookmin.ac.kr/oauth2/authorization/kookmin"
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
     }
 }
