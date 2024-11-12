@@ -1,60 +1,68 @@
 package com.android.myapplication.my
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.JsonReader
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.android.myapplication.R
+import androidx.fragment.app.Fragment
+import com.android.myapplication.App
+import com.android.myapplication.api.RetrofitClient
+import com.android.myapplication.databinding.FragmentDischargeMainBinding
+import com.android.myapplication.databinding.FragmentMembershipGradeBinding
+import com.android.myapplication.databinding.FragmentMyMainBinding
+import com.android.myapplication.discharge.DischargeCaptureActivity
+import com.android.myapplication.dto.OrderListResponseDto
+import com.android.myapplication.dto.OrderRequestDto
+import com.android.myapplication.dto.OrdersResponseDto
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import com.google.gson.JsonSyntaxException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.io.StringReader
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MyMainFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MyMainFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentMyMainBinding?=null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_main, container, false)
+        _binding = FragmentMyMainBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        // api 연결
+        val apiService = RetrofitClient.apiservice
+
+        // token 가져오기
+        val globalToken: String = App.prefs.getItem("token", "no Token")
+
+        // user정보 가져오기
+        val token = "Bearer ${globalToken.replace("\"", "")}"
+
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val response = apiService.getOrderList(token)
+                Log.e("API Response", response.toString())
+                val cPoint = response.currentPoint.toString()
+
+                binding.root.post {
+                    binding.userName.text = "dd"
+                    binding.userCurrentPoint.text = cPoint
+
+                }
+            } catch (e: Exception) {
+                    Log.e("Error", e.message.toString())
+            }
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MyMainFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MyMainFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
