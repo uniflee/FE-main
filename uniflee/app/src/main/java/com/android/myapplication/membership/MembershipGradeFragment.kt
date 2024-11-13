@@ -13,6 +13,7 @@ import com.android.myapplication.databinding.FragmentMembershipGradeBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.sql.Types.NULL
 
 class MembershipGradeFragment : Fragment() {
     private var _binding: FragmentMembershipGradeBinding?=null
@@ -43,10 +44,34 @@ class MembershipGradeFragment : Fragment() {
             try {
                 val response = apiService.getMembership(token)
                 Log.e("API Response", response.toString())
-
+                val impact = response.gradeImpact
+                val grade = response.grade
+                val totalPoint = response.totalPoints
+                val leftPoint = gradeAndNext(totalPoint)[2].toString()
+                val pb = binding.progressbar
+                Log.e("now",totalPoint.toString())
+                Log.e("left",leftPoint.toString())
                 // 화면에 적용하기
                 binding.root.post {
+                    binding.userName.text = response.name
+                    binding.treeProtected.text = impact.treesProtected
+                    binding.gradeName.text = grade
+                    binding.totalPoint.text = totalPoint.toString()
+                    binding.nextGrade.text = gradeAndNext(totalPoint)[1].toString()
+                    binding.leftToNext.text = "다음 등급까지 $leftPoint pt"
+                    pb.progress = gradeAndNext(totalPoint)[3] as Int
 
+                    if (grade == "Bronze"){
+                        binding.gradeImage.setImageResource(R.drawable.img_grade_bronze)
+                    } else if (grade == "Sliver"){
+                        binding.gradeImage.setImageResource(R.drawable.img_grade_silver)
+                    } else if (grade == "Gold"){
+                        binding.gradeImage.setImageResource(R.drawable.img_grade_gold)
+                    } else if (grade == "Platinum"){
+                        binding.gradeImage.setImageResource(R.drawable.img_grade_platinum)
+                    } else if (grade == "Diamond"){
+                        binding.gradeImage.setImageResource(R.drawable.img_grade_diamond)
+                    }
                 }
             } catch (e: Exception) {
                 Log.e("Error", e.message.toString())
@@ -55,5 +80,40 @@ class MembershipGradeFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    fun gradeAndNext(totalPoint:Int): List<Any> {
+        var grade = ""
+        var nextGrade = ""
+        var toNext = 0
+        var forProgress = 0
+        if (totalPoint >= 0 && totalPoint <= 499){
+            grade = "Bronze"
+            nextGrade = "Silver"
+            toNext = 500-totalPoint
+            forProgress = totalPoint/500*100
+        } else if (totalPoint >= 500 && totalPoint <= 999){
+            grade = "Silver"
+            nextGrade = "Gold"
+            toNext = 1000-totalPoint
+            forProgress = totalPoint/1000*100
+        } else if (totalPoint >= 1000 && totalPoint <= 1999){
+            grade = "Gold"
+            nextGrade = "Platinum"
+            toNext = 2000-totalPoint
+            forProgress = totalPoint/2000*100
+        }else if (totalPoint >= 2000 && totalPoint <= 4999){
+            grade = "Platinum"
+            nextGrade = "Diamond"
+            toNext = 5000-totalPoint
+            forProgress = totalPoint/5000*100
+        } else if (totalPoint >= 5000){
+            grade = "Diamond"
+        } else {
+            Log.e("error","error")
+        }
+        var rst = listOf(grade,nextGrade,toNext,forProgress)
+
+        return rst
     }
 }
