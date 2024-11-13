@@ -29,7 +29,7 @@
                     android:fontFamily="@font/pretendardregular"
                     android:textSize="22sp"
                     android:textColor="@color/black"
-                    android:text="000"/>
+                    android:text=""/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                     android:fontFamily="@font/pretendardsemibold"
                     android:textSize="22sp"
                     android:textColor="@color/black"
-                    android:text="000"/>
+                    android:text="0"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

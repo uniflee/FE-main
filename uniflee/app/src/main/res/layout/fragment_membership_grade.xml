@@ -109,6 +109,7 @@
                     android:id="@+id/grade_image"
                     android:layout_width="47dp"
                     android:layout_height="47dp"
+                    android:layout_marginBottom="7dp"
                     android:src="@drawable/img_grade_bronze" />
                 <TextView
                     android:id="@+id/grade_name"
