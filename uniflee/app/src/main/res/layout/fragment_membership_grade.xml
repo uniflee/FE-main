@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -44,23 +45,163 @@
                 android:textSize="22sp"
                 android:text="님, 지금까지"/>
         </LinearLayout>
-        <TextView
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:text="약 5~10그루의 나무를 보호했어요!"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:text="약 "/>
+            <TextView
+                android:id="@+id/tree_protected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:text="0~00 그루"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:text="의 나무를 보호했어요!"/>
+        </LinearLayout>
+
     </LinearLayout>
-    <ImageView
+    <LinearLayout
         app:layout_constraintTop_toBottomOf="@id/description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:src="@drawable/dummy"/>
+        android:layout_marginTop="10dp"
+        android:padding="15dp"
+        android:background="@drawable/bg_grade_box"
+        android:gravity="center_vertical"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/grade_image"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
+                android:src="@drawable/img_grade_bronze" />
+            <TextView
+                android:id="@+id/grade_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bronze 등급"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:fontFamily="@font/pretendardsemibold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginStart="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="누적 "
+                        android:fontFamily="@font/pretendardmedium"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/total_point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="150"
+                        android:fontFamily="@font/pretendardbold"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="pt 보유"
+                        android:fontFamily="@font/pretendardmedium"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="다음 등급은 "
+                        android:fontFamily="@font/pretendardregular"
+                        android:textColor="#3F3F3F"
+                        android:textSize="10sp" />
+                    <TextView
+                        android:id="@+id/next_grade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Silver"
+                        android:fontFamily="@font/pretendardregular"
+                        android:textColor="#3F3F3F"
+                        android:textSize="10sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 등급 입니다."
+                        android:fontFamily="@font/pretendardregular"
+                        android:textColor="#3F3F3F"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/left_to_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="다음 등급까지 350pt"
+                    android:textColor="@color/white"
+                    android:background="@drawable/img_say"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/pretendardextrabold"
+                    android:gravity="center"
+                    android:paddingBottom="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_gravity="center" />
+                <ProgressBar
+                    android:id="@+id/progressbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:progress="30"
+                    android:max="100"
+                    android:progressTint="#26A4FF"
+                    style="?android:attr/progressBarStyleHorizontal"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
     <LinearLayout
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="@drawable/bg_grade_info"

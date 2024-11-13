@@ -13,6 +13,7 @@ import com.android.myapplication.dto.OrdersResponseDto
 import com.android.myapplication.dto.ProfileImageUpdateRequest
 import com.android.myapplication.dto.RecyclingRequestDto
 import com.android.myapplication.dto.RecyclingResponseDto
+import com.android.myapplication.dto.UserInfoResponseDto
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -23,19 +24,12 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    // default
-    @POST("/login")
-    suspend fun designerLogin(
-        @Query("username") username: String,
-        @Query("password") password: String
-    ) : DesignerInfoResponse
-
     // google-controller
     // 아직 개발 안됨
     @POST("/api/google/write")
     suspend fun addExcelList()
 
-    // AWS S3 이미지 업로드 및 다운로드
+    // AWS S3 이미지 업로드 및 다운로드 - 나중에
     @GET("/api/aws")
     suspend fun downloadImage(
         @Query("name") name : String // s3 이미지 위치
@@ -45,7 +39,7 @@ interface ApiService {
         @Query("type") type : String
     ) : String
 
-    // RecyclingController 재활용 관련 API
+    // RecyclingController 재활용 관련 API - 나중에
     @GET("/api/recycling")
     suspend fun getRecyclingList(
         @Header("Authorization") Authorization: String
@@ -66,29 +60,18 @@ interface ApiService {
     suspend fun getMembership(
         @Header("Authorization") Authorization: String
     ): MembershipResponseDto
+    @GET("/api/user")
+    suspend fun getUserInfo(
+        @Header("Authorization") Authorization: String
+    ): UserInfoResponseDto
 
     // DesignerController 디자이너 정보 관리 API
-    @PATCH("/api/designer/profileImage")
-    suspend fun modifyImage(
-        @Header("Authorization") Authorization: String,
-        @Body profileImageUrl : ProfileImageUpdateRequest
-    ) : String
-    @PATCH("/api/designer/name")
-    suspend fun modifyName(
-        @Header("Authorization") Authorization: String,
-        @Body name : DesignerNameUpdateRequest
-    ) : String
-    @PATCH("/api/designer/backgroundImage")
-    suspend fun modifyBackgroundImage(
-        @Header("Authorization") Authorization: String,
-        @Body backgroundImage : BackgroundImageUpdateRequest
-    )
     @GET("/api/designer")
     suspend fun getDesignerInfo(
         @Header("Authorization") Authorization: String
     ) : DesignerInfoResponse
 
-    // OrdersController 주문 관련 API
+    // OrdersController 주문 관련 API - 나중에
     @GET("/api/orders")
     suspend fun getOrderList(
         @Header("Authorization") Authorization: String
@@ -110,18 +93,4 @@ interface ApiService {
     suspend fun getItemList(
         @Header("Authorization") Authorization: String
     ) : ItemResponseDto
-    @POST("/api/item")
-    suspend fun newItem(
-        @Header("Authorization") Authorization: String,
-        @Body data : ItemRequestDto
-    )
-    @DELETE("/api/item")
-    suspend fun deleteItem(
-        @Header("Authorization") Authorization: String
-    )
-    @PATCH("/api/item")
-    suspend fun modifyItem(
-        @Header("Authorization") Authorization: String,
-        @Path("itemId") itemId : Int
-    )
 }
