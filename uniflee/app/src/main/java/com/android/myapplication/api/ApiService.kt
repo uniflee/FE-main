@@ -13,6 +13,7 @@ import com.android.myapplication.dto.OrdersResponseDto
 import com.android.myapplication.dto.ProfileImageUpdateRequest
 import com.android.myapplication.dto.RecyclingRequestDto
 import com.android.myapplication.dto.RecyclingResponseDto
+import com.android.myapplication.dto.UserInfoResponseDto
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -59,6 +60,10 @@ interface ApiService {
     suspend fun getMembership(
         @Header("Authorization") Authorization: String
     ): MembershipResponseDto
+    @GET("/api/user")
+    suspend fun getUserInfo(
+        @Header("Authorization") Authorization: String
+    ): UserInfoResponseDto
 
     // DesignerController 디자이너 정보 관리 API
     @GET("/api/designer")

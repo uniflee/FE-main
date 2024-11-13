@@ -13,3 +13,13 @@ data class MembershipResponseDto(
     val gradeImpact: GradeImpact
 )
 
+data class UserInfoResponseDto(
+    val id : Int,
+    val name : String,
+    val grade: String,
+    val username :  String,
+    val totalPoints: Int,
+    val currentPoints : Int
+
+)
+
