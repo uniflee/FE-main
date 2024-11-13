@@ -50,10 +50,11 @@ class MyMainFragment : Fragment() {
             try {
                 val response = apiService.getOrderList(token)
                 Log.e("API Response", response.toString())
+                val userName = response.name.toString()
                 val cPoint = response.currentPoint.toString()
 
                 binding.root.post {
-                    binding.userName.text = "dd"
+                    binding.userName.text = userName
                     binding.userCurrentPoint.text = cPoint
 
                 }

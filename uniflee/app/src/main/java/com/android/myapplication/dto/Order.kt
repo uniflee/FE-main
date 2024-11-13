@@ -12,6 +12,7 @@ data class OrdersResponseDto(
 
 data class OrderListResponseDto(
     val currentPoint : Int,
+    val name : String,
     val ordersResponseDtoList : List<OrdersResponseDto>
 )
 
