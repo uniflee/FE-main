@@ -53,7 +53,7 @@ class MembershipGradeFragment : Fragment() {
                 Log.e("left",leftPoint.toString())
                 // 화면에 적용하기
                 binding.root.post {
-                    binding.userName.text = response.name
+                    binding.userName.text = App.prefs.getItem("name","noName")
                     binding.treeProtected.text = impact.treesProtected
                     binding.gradeName.text = grade
                     binding.totalPoint.text = totalPoint.toString()

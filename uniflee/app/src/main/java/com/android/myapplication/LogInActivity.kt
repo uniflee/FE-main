@@ -1,27 +1,12 @@
 package com.android.myapplication
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityLogInBinding
-import com.android.myapplication.databinding.ActivityMembershipBenefitBinding
-import com.android.myapplication.discharge.DischargeNewRewardActivity
-import com.google.gson.Gson
-import com.google.gson.stream.JsonReader
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.io.InputStreamReader
 import java.net.HttpURLConnection
 
 class LogInActivity : AppCompatActivity() {
@@ -30,8 +15,6 @@ class LogInActivity : AppCompatActivity() {
     private val binding: ActivityLogInBinding by lazy {
         ActivityLogInBinding.inflate(layoutInflater)
     }
-    // api 연결
-    val apiService = RetrofitClient.apiservice
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
