@@ -7,9 +7,9 @@ class SharedPref(context: Context) {
     private val pref: SharedPreferences =
         context.getSharedPreferences("prefs_name", Context.MODE_PRIVATE)
 
-    fun addItem(key: String, value: String) {
+    fun addItem(key: String, value: Any) {
         val editor = pref.edit()
-        editor.putString(key, value)
+        editor.putString(key, value.toString())
         editor.apply()
     }
 
