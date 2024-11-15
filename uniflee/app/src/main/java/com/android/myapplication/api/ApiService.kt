@@ -38,7 +38,7 @@ interface ApiService {
 
     // RecyclingController 재활용 관련 API - 나중에
     @Multipart
-    @GET("/image/analyze")
+    @POST("/image/analyze")
     suspend fun checkPhoto(
         @Header("Authorization") Authorization: String,
         @Part image: MultipartBody.Part
