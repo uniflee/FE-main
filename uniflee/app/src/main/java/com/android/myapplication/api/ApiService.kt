@@ -9,6 +9,7 @@ import com.android.myapplication.dto.OrderRequestDto
 import com.android.myapplication.dto.OrdersResponseDto
 import com.android.myapplication.dto.RecyclingRequestDto
 import com.android.myapplication.dto.RecyclingResponseDto
+import com.android.myapplication.dto.RecyclingStrategyResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
 import com.android.myapplication.dto.UserInfoResponseDto
@@ -56,7 +57,7 @@ interface ApiService {
     suspend fun getRecyclingGuide(
         @Header("Authorization") Authorization: String,
         @Query("itemType") itemType : String
-    ) : String
+    ) : RecyclingStrategyResponse
 
     // UserController 유저 관련 API
     @GET("/api/user/membership")
