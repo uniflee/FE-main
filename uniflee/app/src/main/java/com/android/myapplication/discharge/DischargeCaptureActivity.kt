@@ -99,6 +99,8 @@ class DischargeCaptureActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                    // 사용 예시
+                    Log.e("File Size",getFileSize(photoFile.toString()))
                     sendPhotoToServer(photoFile)
                 }
 
@@ -124,7 +126,7 @@ class DischargeCaptureActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val response = apiService.checkPhoto(token, body) // checkPhoto는 suspend 함수여야 합니다.
+                val response = apiService.checkPhoto(token, body)
                 if (response.isSuccessful) {
                     Log.e("API Response", "Upload successful: ${response.body()}")
                 } else {
@@ -135,4 +137,17 @@ class DischargeCaptureActivity : AppCompatActivity() {
             }
         }
     }
+    // 파일 크기 확인
+    fun getFileSize(filePath: String): String {
+        val file = File(filePath)
+        if (!file.exists()) {
+            return "File does not exist."
+        }
+        val fileSizeInBytes = file.length()
+        val fileSizeInKB = fileSizeInBytes / 1024
+        val fileSizeInMB = fileSizeInKB / 1024
+
+        return "File Size: $fileSizeInBytes bytes ($fileSizeInKB KB, $fileSizeInMB MB)"
+    }
+
 }
