@@ -26,3 +26,12 @@ data class ItemResponseDto(
     val name : String,
     val price : Int
 )
+
+data class OwnItemDetailResponse(
+    val id : Int,
+    val featuredImageUrl : String?,
+    val designerName : String,
+    val name : String,
+    val price : Int,
+    val description: MutableList<ItemDescription>?
+)

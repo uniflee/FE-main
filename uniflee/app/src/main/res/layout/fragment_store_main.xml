@@ -54,18 +54,16 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:scaleType="centerCrop"
-                    app:tint="#80000000"
-                    app:tintMode="src_atop"/>
+                    android:scaleType="centerCrop"/>
     
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="지구와 함께하는 어쩌구"
+                    android:text="지구와 함께하는 캠페인"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginStart="24dp"
-                    android:layout_marginBottom="77dp"
+                    android:layout_marginBottom="52dp"
                     android:textColor="#FFFFFF"
                     android:fontFamily="@font/pretendardregular"
                     android:textSize="20sp" />
@@ -77,19 +75,11 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginStart="24dp"
-                    android:layout_marginBottom="49dp"
+                    android:layout_marginBottom="24dp"
                     android:textColor="#FFFFFF"
                     android:fontFamily="@font/pretendardbold"
-                    android:textSize="20sp" />
-    
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginBottom="15dp"
-                    android:src="@drawable/ic_photodots"/>
+                    android:textSize="20sp"/>
+
     
             </androidx.constraintlayout.widget.ConstraintLayout>
             

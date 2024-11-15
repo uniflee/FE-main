@@ -1,21 +1,32 @@
 package com.android.myapplication.store
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.myapplication.App
 import com.android.myapplication.R
+import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.FragmentStoreMainBinding
+import com.android.myapplication.dto.ItemResponseDto
 import com.android.myapplication.membership.MembershipGradeFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class StoreMainFragment : Fragment() {
 
     private var _binding: FragmentStoreMainBinding?=null
     private val binding get() = _binding!!
+
+    private var itemList: MutableList<ItemResponseDto> = mutableListOf()
+
+    private val token = "Bearer ${App.prefs.getItem("token", "")}"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,26 +42,27 @@ class StoreMainFragment : Fragment() {
                 .commitAllowingStateLoss()
         }
 
-        val itemList = listOf(
-            ProductContents(R.drawable.bg_gray, "디자이너1", "상품1", 1111),
-            ProductContents(R.drawable.bg_gray, "디자이너2", "상품2", 2222),
-            ProductContents(R.drawable.bg_gray, "디자이너3", "상품3", 3333),
-            ProductContents(R.drawable.bg_gray, "디자이너3", "상품3", 3333),
-            ProductContents(R.drawable.bg_gray, "디자이너4", "상품4", 4444)
-        )
-
+        getItemList()
+        val productAdapter = ProductAdapter(itemList)
         binding.rvGoods.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.rvGoods.adapter = ProductAdapter(itemList) { item ->
-            val intent = Intent(context, StoreProductDetailsActivity::class.java).apply {
-                putExtra("PRODUCT_IMAGE", item.ProductImage)
-                putExtra("STORE_NAME", item.StoreName)
-                putExtra("PRODUCT_NAME", item.ProductName)
-                putExtra("PRODUCT_PRICE", item.ProductPrice)
-            }
-            startActivity(intent)
-        }
+        binding.rvGoods.adapter = productAdapter
 
         return root
+    }
+
+    private fun getItemList() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val updatedItemList = withContext(Dispatchers.IO) {
+                    RetrofitClient.apiservice.getItemList(token)
+                }
+                itemList = updatedItemList
+                Log.d("StoreManageActivity", "$itemList")
+            } catch (e: retrofit2.HttpException) {
+                Toast.makeText(requireContext(), "itemList Load Failed.", Toast.LENGTH_SHORT).show()
+                Log.e("StoreManageActivity", "getitem: ${e.response()?.errorBody()?.string()}")
+            }
+        }
     }
 
     override fun onResume() {
