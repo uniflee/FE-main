@@ -8,9 +8,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/title"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/bg_mymain"
+        android:background="@drawable/img_my_main"
         android:layout_width="match_parent"
-        android:layout_height="289dp">
+        android:layout_height="320dp">
         <LinearLayout
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
