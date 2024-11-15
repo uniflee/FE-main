@@ -1,25 +1,22 @@
 package com.android.myapplication.api
 
-import com.android.myapplication.dto.BackgroundImageUpdateRequest
 import com.android.myapplication.dto.DesignerInfoResponse
-import com.android.myapplication.dto.DesignerNameUpdateRequest
-import com.android.myapplication.dto.ItemRequestDto
+import com.android.myapplication.dto.ImageAnalyzeResponse
 import com.android.myapplication.dto.ItemResponseDto
-import com.android.myapplication.dto.Login
 import com.android.myapplication.dto.MembershipResponseDto
 import com.android.myapplication.dto.OrderListResponseDto
 import com.android.myapplication.dto.OrderRequestDto
 import com.android.myapplication.dto.OrdersResponseDto
-import com.android.myapplication.dto.ProfileImageUpdateRequest
 import com.android.myapplication.dto.RecyclingRequestDto
 import com.android.myapplication.dto.RecyclingResponseDto
+import okhttp3.MultipartBody
+import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
-import retrofit2.http.PATCH
+import retrofit2.http.Multipart
 import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
@@ -39,6 +36,12 @@ interface ApiService {
     ) : String
 
     // RecyclingController 재활용 관련 API - 나중에
+    @Multipart
+    @GET("/image/analyze")
+    suspend fun checkPhoto(
+        @Header("Authorization") Authorization: String,
+        @Part image: MultipartBody.Part
+    ) : Response<ImageAnalyzeResponse>
     @GET("/api/recycling")
     suspend fun getRecyclingList(
         @Header("Authorization") Authorization: String
