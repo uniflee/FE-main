@@ -55,7 +55,6 @@ class MembershipGradeFragment : Fragment() {
                 binding.root.post {
                     binding.userName.text = App.prefs.getItem("name","noName")
                     binding.treeProtected.text = impact.treesProtected
-                    binding.gradeName.text = grade
                     binding.totalPoint.text = totalPoint.toString()
                     binding.nextGrade.text = gradeAndNext(totalPoint)[1].toString()
                     binding.leftToNext.text = "다음 등급까지 $leftPoint pt"
@@ -63,14 +62,19 @@ class MembershipGradeFragment : Fragment() {
 
                     if (grade == "Bronze"){
                         binding.gradeImage.setImageResource(R.drawable.img_grade_bronze)
+                        binding.gradeName.text = "Bronze 등급"
                     } else if (grade == "Sliver"){
                         binding.gradeImage.setImageResource(R.drawable.img_grade_silver)
+                        binding.gradeName.text = "Silver 등급"
                     } else if (grade == "Gold"){
                         binding.gradeImage.setImageResource(R.drawable.img_grade_gold)
+                        binding.gradeName.text = "Gold 등급"
                     } else if (grade == "Platinum"){
                         binding.gradeImage.setImageResource(R.drawable.img_grade_platinum)
+                        binding.gradeName.text = "Platinum 등급"
                     } else if (grade == "Diamond"){
                         binding.gradeImage.setImageResource(R.drawable.img_grade_diamond)
+                        binding.gradeName.text = "Diamond 등급"
                     }
                 }
             } catch (e: Exception) {
