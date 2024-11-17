@@ -39,6 +39,7 @@ class MyMainFragment : Fragment() {
     ): View? {
         _binding = FragmentMyMainBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        val recyclerView: RecyclerView = binding.recyclerView
 
         // api 연결
         val apiService = RetrofitClient.apiservice
@@ -54,30 +55,43 @@ class MyMainFragment : Fragment() {
                 val response = apiService.getOrderList(token)
                 Log.e("API Response", response.toString())
                 val cPoint = response.currentPoint.toString()
-
                 binding.root.post {
                     binding.userName.text = App.prefs.getItem("name","noName")
                     binding.userCurrentPoint.text = cPoint
-
                 }
+                // 서버 데이터를 RecyclerView 데이터로 변환
+                val itemList = mapResponseToRecycler(response.ordersResponseDtoList)
+                Log.e("LLLLIIIISST",itemList.toString())
+
+                // 어댑터 연결
+                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                recyclerView.adapter = OrderAdapter(itemList)
+
             } catch (e: Exception) {
                     Log.e("Error", e.message.toString())
             }
         }
 
-        val recyclerView: RecyclerView = binding.recyclerView
+//        // 샘플 데이터 생성
+//        val itemList = listOf(
+//            OrderRecycler("24.10.29", "제품명1", "디자이너이름1", null, 1,6000),
+//            OrderRecycler("24.11.17", "제품명2", "디자이너이름2", null, 2,4000)
+//        )
 
-        // 샘플 데이터 생성
-        val itemList = listOf(
-            OrderRecycler("24.10.29", "제품명1", "디자이너이름1", null, 1,6000),
-            OrderRecycler("24.11.17", "제품명2", "디자이너이름2", null, 2,4000)
-        )
-
-        // 어댑터 연결
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = OrderAdapter(itemList)
-
-        return binding.root
+        return root
+    }
+    // 서버 데이터를 화면 데이터로 변환하는 함수
+    private fun mapResponseToRecycler(ordersResponseDtoList: List<OrdersResponseDto>): List<OrderRecycler> {
+        return ordersResponseDtoList.map { response ->
+            OrderRecycler(
+                date = "24.11.17",                // 날짜 임의로 지정
+                name = response.name,            // 제품명
+                designerName = response.designerName, // 디자이너 이름
+                featuredImageUrl = response.featuredImageUrl, // 이미지 URL
+                count = response.count,       // 수량
+                point = response.point      // 포인트
+            )
+        }
     }
 
 }

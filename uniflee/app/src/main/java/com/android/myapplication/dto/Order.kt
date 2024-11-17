@@ -13,7 +13,7 @@ data class OrdersResponseDto(
 data class OrderListResponseDto(
     val currentPoint : Int,
     val name : String,
-    val ordersResponseDtoList : List<OrdersResponseDto>
+    val ordersResponseDtoList : MutableList<OrdersResponseDto>
 )
 
 data class OrderRequestDto(

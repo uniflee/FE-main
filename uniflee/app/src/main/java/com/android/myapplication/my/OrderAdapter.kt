@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.R
 import com.android.myapplication.dto.OrderRecycler
+import com.bumptech.glide.Glide
 import java.text.NumberFormat
 
 class OrderAdapter(private val itemList: List<OrderRecycler>) :
@@ -23,7 +24,7 @@ class OrderAdapter(private val itemList: List<OrderRecycler>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.component_order, parent, false)
+            .inflate(R.layout.order_item, parent, false)
         return OrderViewHolder(view)
     }
 
@@ -35,7 +36,12 @@ class OrderAdapter(private val itemList: List<OrderRecycler>) :
         holder.name.text = item.name
         holder.pointAndCount.text = formattedPointAndCount
 
-        holder.image.setImageResource(R.drawable.appicon) // 샘플 이미지
+//        holder.image.setImageResource(R.drawable.appicon) // 샘플 이미지
+        // Glide로 이미지 로드
+        Glide.with(holder.itemView.context)
+            .load(item.featuredImageUrl) // 이미지 URL
+            .placeholder(R.drawable.appicon) // 로딩 중 표시할 이미지
+            .into(holder.image)
     }
 
     override fun getItemCount(): Int = itemList.size
