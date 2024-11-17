@@ -47,17 +47,30 @@
         android:padding="25dp"
         android:layout_width="0dp"
         android:layout_height="292dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendardlight"
-            android:textSize="26sp"
-            android:text="재질명을 분리수거 할 시"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/predict"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendardlight"
+                android:textSize="26sp"
+                android:text="재질명"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendardlight"
+                android:textSize="26sp"
+                android:text="을 분리수거 할 시"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/point"
                 android:textSize="26sp"
                 android:fontFamily="@font/pretendardmedium"
                 android:layout_width="wrap_content"
@@ -184,6 +197,7 @@
                 android:textColor="@color/text"
                 android:text="총 지급 포인트"/>
             <TextView
+                android:id="@+id/total_point"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

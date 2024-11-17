@@ -15,9 +15,8 @@ object RetrofitClient {
     val apiservice: ApiService by lazy {
         Retrofit.Builder()
             .baseUrl("https://uniflee.alpha.cs.kookmin.ac.kr")
-            .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
             .build().create(ApiService::class.java)
     }
 }
