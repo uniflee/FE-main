@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.App
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.FragmentDischargeMainBinding
@@ -15,6 +17,7 @@ import com.android.myapplication.databinding.FragmentMembershipGradeBinding
 import com.android.myapplication.databinding.FragmentMyMainBinding
 import com.android.myapplication.discharge.DischargeCaptureActivity
 import com.android.myapplication.dto.OrderListResponseDto
+import com.android.myapplication.dto.OrderRecycler
 import com.android.myapplication.dto.OrderRequestDto
 import com.android.myapplication.dto.OrdersResponseDto
 import com.google.gson.Gson
@@ -61,6 +64,18 @@ class MyMainFragment : Fragment() {
                     Log.e("Error", e.message.toString())
             }
         }
+
+        val recyclerView: RecyclerView = binding.recyclerView
+
+        // 샘플 데이터 생성
+        val itemList = listOf(
+            OrderRecycler("24.10.29", "제품명1", "디자이너이름1", null, 1,6000),
+            OrderRecycler("24.11.17", "제품명2", "디자이너이름2", null, 2,4000)
+        )
+
+        // 어댑터 연결
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = OrderAdapter(itemList)
 
         return binding.root
     }

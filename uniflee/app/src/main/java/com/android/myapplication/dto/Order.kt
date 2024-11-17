@@ -20,3 +20,12 @@ data class OrderRequestDto(
     val itemId : Int,
     val count : Int
 )
+
+data class OrderRecycler(
+    val date : String,
+    val name : String,
+    val designerName : String,
+    val featuredImageUrl : String?,
+    val count : Int,
+    val point : Int
+)
