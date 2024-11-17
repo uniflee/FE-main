@@ -59,6 +59,7 @@ class MembershipGradeFragment : Fragment() {
                     binding.nextGrade.text = gradeAndNext(totalPoint)[1].toString()
                     binding.leftToNext.text = "다음 등급까지 $leftPoint pt"
                     pb.progress = gradeAndNext(totalPoint)[3] as Int
+                    Log.e("for PB", gradeAndNext(totalPoint)[3].toString())
 
                     if (grade == "Bronze"){
                         binding.gradeImage.setImageResource(R.drawable.img_grade_bronze)
@@ -95,22 +96,22 @@ class MembershipGradeFragment : Fragment() {
             grade = "Bronze"
             nextGrade = "Silver"
             toNext = 500-totalPoint
-            forProgress = totalPoint/500*100
+            forProgress = ((totalPoint.toDouble()/500)*100).toInt()
         } else if (totalPoint >= 500 && totalPoint <= 999){
             grade = "Silver"
             nextGrade = "Gold"
             toNext = 1000-totalPoint
-            forProgress = totalPoint/1000*100
+            forProgress = ((totalPoint.toDouble()/1000)*100).toInt()
         } else if (totalPoint >= 1000 && totalPoint <= 1999){
             grade = "Gold"
             nextGrade = "Platinum"
             toNext = 2000-totalPoint
-            forProgress = totalPoint/2000*100
+            forProgress = ((totalPoint.toDouble()/2000)*100).toInt()
         }else if (totalPoint >= 2000 && totalPoint <= 4999){
             grade = "Platinum"
             nextGrade = "Diamond"
             toNext = 5000-totalPoint
-            forProgress = totalPoint/5000*100
+            forProgress = ((totalPoint.toDouble()/5000)*100).toInt()
         } else if (totalPoint >= 5000){
             grade = "Diamond"
         } else {
