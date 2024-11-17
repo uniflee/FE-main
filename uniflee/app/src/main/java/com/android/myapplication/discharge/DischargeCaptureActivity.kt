@@ -1,6 +1,7 @@
 package com.android.myapplication.discharge
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -99,9 +100,13 @@ class DischargeCaptureActivity : AppCompatActivity() {
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    // 사용 예시
-                    Log.e("File Size",getFileSize(photoFile.toString()))
-                    sendPhotoToServer(photoFile)
+                    Log.d("File", "File saved at: ${photoFile.absolutePath}")
+                    if (photoFile.exists() && photoFile.length() > 0) {
+                        Log.e("File Size", getFileSize(photoFile.absolutePath))
+                        sendPhotoToServer(photoFile)
+                    } else {
+                        Log.e("File Error", "File does not exist or is empty.")
+                    }
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -122,15 +127,19 @@ class DischargeCaptureActivity : AppCompatActivity() {
         val token = "Bearer ${globalToken.replace("\"", "")}"
 
         val requestBody = photoFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
-        val body = MultipartBody.Part.createFormData("file", photoFile.name, requestBody)
+        val body = MultipartBody.Part.createFormData("image", photoFile.name, requestBody)
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val response = apiService.checkPhoto(token, body)
                 if (response.isSuccessful) {
-                    Log.e("API Response", "Upload successful: ${response.body()}")
+                    Log.d("API Response", "Upload successful: ${response.body()}")
+                    response.body()?.let { intentGuide(it.predict) }
                 } else {
-                    Log.e("API Response", "Upload failed: ${response.errorBody()?.string()}")
+                    Log.e(
+                        "API Response",
+                        "Upload failed: ${response.code()} ${response.errorBody()?.string()}"
+                    )
                 }
             } catch (e: Exception) {
                 Log.e("Error", "Network request failed: ${e.message}")
@@ -148,6 +157,12 @@ class DischargeCaptureActivity : AppCompatActivity() {
         val fileSizeInMB = fileSizeInKB / 1024
 
         return "File Size: $fileSizeInBytes bytes ($fileSizeInKB KB, $fileSizeInMB MB)"
+    }
+
+    fun intentGuide(predict : String){
+        val intent = Intent(this, DischargeGuideActivity::class.java)
+        intent.putExtra("predict", predict)
+        startActivity(intent)
     }
 
 }
