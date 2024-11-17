@@ -3,6 +3,7 @@ package com.android.myapplication.discharge
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -68,9 +69,12 @@ class DischargeNewRewardActivity : AppCompatActivity() {
         }
 
         binding.getReward.setOnClickListener {
-            if (receivedPredict != null) {
+            if ((textNumber.text as String).toInt()==0){
+                Toast.makeText(this, "갯수를 입력하세요", Toast.LENGTH_SHORT).show()
+            } else if (receivedPredict != null) {
                 requestNewReward(receivedPredict, (textNumber.text as String).toInt())
             }
+
         }
     }
 
@@ -98,6 +102,7 @@ class DischargeNewRewardActivity : AppCompatActivity() {
 
     fun intentMain(){
         val intent = Intent(this,MainActivity::class.java)
+        intent.putExtra("Hint", "change")
         startActivity(intent)
     }
 }
