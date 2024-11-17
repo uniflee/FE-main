@@ -26,3 +26,8 @@ data class ItemResponseDto(
     val name : String,
     val price : Int
 )
+
+data class PreSignedUrlResponse(
+    val preSignedUrl : String,
+    val resourceUrl : String
+)

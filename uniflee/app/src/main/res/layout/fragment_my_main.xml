@@ -95,14 +95,16 @@
             android:layout_marginStart="24dp"
             android:text="주문내역"/>
 
-        <include
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
             app:layout_constraintTop_toBottomOf="@id/id"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            layout="@layout/component_order"/>
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

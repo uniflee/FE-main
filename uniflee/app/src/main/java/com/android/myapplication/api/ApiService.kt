@@ -7,6 +7,7 @@ import com.android.myapplication.dto.MembershipResponseDto
 import com.android.myapplication.dto.OrderListResponseDto
 import com.android.myapplication.dto.OrderRequestDto
 import com.android.myapplication.dto.OrdersResponseDto
+import com.android.myapplication.dto.PreSignedUrlResponse
 import com.android.myapplication.dto.RecyclingRequestDto
 import com.android.myapplication.dto.RecyclingResponseDto
 import com.android.myapplication.dto.RecyclingStrategyResponse
@@ -22,20 +23,11 @@ import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
-    // google-controller
-    // 아직 개발 안됨
-    @POST("/api/google/write")
-    suspend fun addExcelList()
-
     // AWS S3 이미지 업로드 및 다운로드
-    @GET("/api/aws")
-    suspend fun downloadImage(
-        @Query("name") name : String // s3 이미지 위치
-    ) : String
-    @POST("/api/aws")
+    @GET("/api/aws/presigned-url")
     suspend fun uploadImage(
         @Query("type") type : String
-    ) : String
+    ) : PreSignedUrlResponse
 
     // RecyclingController 재활용 관련 API
     @Multipart
