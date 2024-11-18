@@ -12,11 +12,13 @@ class ProductAdapter(val items: MutableList<ItemResponseDto>) : RecyclerView.Ada
 
     inner class MyViewHolder(private val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item: ItemResponseDto) {
-            val finalImageUrl = "http://localhost:9000/unique-storage-service" + item.featuredImageUrl
-            Glide.with(binding.rvImage.context).load(finalImageUrl).into(binding.rvImage)
+            val finalImageUrl = "https://uniflee.alpha.cs.kookmin.ac.kr/uniflee-simple-storage-service/" + item.featuredImageUrl
+            Glide.with(binding.root)
+                .load(finalImageUrl)
+                .into(binding.rvImage)
             binding.rvStore.text = item.designerName
             binding.rvProduct.text = item.name
-            binding.rvPrice.text = item.price.toString()
+            binding.rvPrice.text = "${item.price} 포인트"
 
             binding.root.setOnClickListener {
                 val context = binding.root.context

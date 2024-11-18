@@ -16,6 +16,7 @@ import com.android.myapplication.databinding.FragmentStoreMainBinding
 import com.android.myapplication.dto.ItemResponseDto
 import com.android.myapplication.membership.MembershipGradeFragment
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -38,32 +39,34 @@ class StoreMainFragment : Fragment() {
         binding.goGradeBtn.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, MembershipGradeFragment())
-                .addToBackStack(null) // 백스택에 추가해서 뒤로 가기 가능
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+        binding.backgroundImageView.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, StoreDesignerDetailsFragment())
+                .addToBackStack(null)
                 .commitAllowingStateLoss()
         }
 
-        getItemList()
-        val productAdapter = ProductAdapter(itemList)
-        binding.rvGoods.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.rvGoods.adapter = productAdapter
+        GlobalScope.launch {
+            try{
+                Log.d("StoreMainFragment", "token: ${token}")
+                itemList = RetrofitClient.apiservice.getItemList(token)
+                Log.d("StoreMainFragment", "itemList : ${itemList}")
+                withContext(Dispatchers.Main){
+                    val productAdapter = ProductAdapter(itemList)
+                    binding.rvGoods.layoutManager = GridLayoutManager(requireContext(), 2)
+                    binding.rvGoods.adapter = productAdapter
+                }
+            } catch (e: retrofit2.HttpException){
+                Log.e("StoreMainFragment", "ItemList Load Failed!: ${e.response()?.errorBody()?.string()}")
+            }
+        }
 
         return root
     }
 
-    private fun getItemList() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            try {
-                val updatedItemList = withContext(Dispatchers.IO) {
-                    RetrofitClient.apiservice.getItemList(token)
-                }
-                itemList = updatedItemList
-                Log.d("StoreManageActivity", "$itemList")
-            } catch (e: retrofit2.HttpException) {
-                Toast.makeText(requireContext(), "itemList Load Failed.", Toast.LENGTH_SHORT).show()
-                Log.e("StoreManageActivity", "getitem: ${e.response()?.errorBody()?.string()}")
-            }
-        }
-    }
 
     override fun onResume() {
         super.onResume()
