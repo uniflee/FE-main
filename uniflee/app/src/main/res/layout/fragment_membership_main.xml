@@ -14,19 +14,29 @@
         android:layout_width="match_parent"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
-        android:background="#D9D9D9"
+        android:background="@drawable/bg_membership_main_img"
         android:layout_height="0dp"
         android:orientation="vertical">
         <TextView
-            app:layout_constraintBottom_toTopOf="@id/go_grade_btn"
+            android:id="@+id/header_title"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="26dp"
-            android:textColor="@color/text"
-            android:textSize="20sp"
-            android:fontFamily="@font/pretendardregular"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="6dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:fontFamily="@font/pretendardbold"
             android:text="과연 나는 얼마나\n환경 보호에 기여하고 있을까?"/>
+        <ImageView
+            app:layout_constraintTop_toBottomOf="@id/header_title"
+            app:layout_constraintBottom_toTopOf="@id/go_grade_btn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_membership_main"/>
         <TextView
             android:id="@+id/go_grade_btn"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -94,7 +104,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/img_round_gray"/>
+                    android:src="@drawable/btn_membership1"/>
                 <TextView
                     app:layout_constraintStart_toEndOf="@id/icon_1"
                     app:layout_constraintTop_toTopOf="parent"
@@ -127,7 +137,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/img_round_gray"/>
+                    android:src="@drawable/btn_membership2"/>
                 <TextView
                     app:layout_constraintStart_toEndOf="@id/icon_2"
                     app:layout_constraintTop_toTopOf="parent"
@@ -161,7 +171,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/img_round_gray"/>
+                    android:src="@drawable/btn_membership3"/>
                 <TextView
                     app:layout_constraintStart_toEndOf="@id/icon_3"
                     app:layout_constraintTop_toTopOf="parent"

@@ -1,60 +1,97 @@
 package com.android.myapplication.my
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.JsonReader
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.android.myapplication.R
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.android.myapplication.App
+import com.android.myapplication.api.RetrofitClient
+import com.android.myapplication.databinding.FragmentDischargeMainBinding
+import com.android.myapplication.databinding.FragmentMembershipGradeBinding
+import com.android.myapplication.databinding.FragmentMyMainBinding
+import com.android.myapplication.discharge.DischargeCaptureActivity
+import com.android.myapplication.dto.OrderListResponseDto
+import com.android.myapplication.dto.OrderRecycler
+import com.android.myapplication.dto.OrderRequestDto
+import com.android.myapplication.dto.OrdersResponseDto
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import com.google.gson.JsonSyntaxException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.io.StringReader
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MyMainFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MyMainFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentMyMainBinding?=null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_main, container, false)
+        _binding = FragmentMyMainBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        val recyclerView: RecyclerView = binding.recyclerView
+
+        // api 연결
+        val apiService = RetrofitClient.apiservice
+
+        // token 가져오기
+        val globalToken: String = App.prefs.getItem("token", "no Token")
+
+        // user정보 가져오기
+        val token = "Bearer ${globalToken.replace("\"", "")}"
+
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val response = apiService.getOrderList(token)
+                Log.e("API Response", response.toString())
+                val cPoint = response.currentPoint.toString()
+                binding.root.post {
+                    binding.userName.text = App.prefs.getItem("name","noName")
+                    binding.userCurrentPoint.text = cPoint
+                }
+                // 서버 데이터를 RecyclerView 데이터로 변환
+                val itemList = mapResponseToRecycler(response.ordersResponseDtoList)
+                Log.e("LLLLIIIISST",itemList.toString())
+
+                // 어댑터 연결
+                recyclerView.layoutManager = LinearLayoutManager(requireContext())
+                recyclerView.adapter = OrderAdapter(itemList)
+
+            } catch (e: Exception) {
+                    Log.e("Error", e.message.toString())
+            }
+        }
+
+//        // 샘플 데이터 생성
+//        val itemList = listOf(
+//            OrderRecycler("24.10.29", "제품명1", "디자이너이름1", null, 1,6000),
+//            OrderRecycler("24.11.17", "제품명2", "디자이너이름2", null, 2,4000)
+//        )
+
+        return root
+    }
+    // 서버 데이터를 화면 데이터로 변환하는 함수
+    private fun mapResponseToRecycler(ordersResponseDtoList: List<OrdersResponseDto>): List<OrderRecycler> {
+        return ordersResponseDtoList.map { response ->
+            OrderRecycler(
+                date = "24.11.17",                // 날짜 임의로 지정
+                name = response.name,            // 제품명
+                designerName = response.designerName, // 디자이너 이름
+                featuredImageUrl = response.featuredImageUrl, // 이미지 URL
+                count = response.count,       // 수량
+                point = response.point      // 포인트
+            )
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MyMainFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MyMainFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

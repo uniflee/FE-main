@@ -31,13 +31,10 @@ class StoreMainFragment : Fragment() {
                 .commitAllowingStateLoss()
         }
 
-        binding.shoppingcartBtn.setOnClickListener {
-            startActivity(Intent(context, StoreCartActivity()::class.java))
-        }
-
         val itemList = listOf(
             ProductContents(R.drawable.bg_gray, "디자이너1", "상품1", 1111),
             ProductContents(R.drawable.bg_gray, "디자이너2", "상품2", 2222),
+            ProductContents(R.drawable.bg_gray, "디자이너3", "상품3", 3333),
             ProductContents(R.drawable.bg_gray, "디자이너3", "상품3", 3333),
             ProductContents(R.drawable.bg_gray, "디자이너4", "상품4", 4444)
         )
@@ -52,22 +49,6 @@ class StoreMainFragment : Fragment() {
             }
             startActivity(intent)
         }
-
-        val DesignerList = listOf(
-            DesignerContents(1, R.drawable.img_designerprofile, "미친 감각 디자이너 1"),
-            DesignerContents(2, R.drawable.img_designerprofile, "예술의 경지 디자이너 2"),
-            DesignerContents(3, R.drawable.img_designerprofile, "기상천외한 발상 디자이너 3")
-        )
-
-        val DesignerClickListener: (DesignerContents) -> Unit = { item ->
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, StoreDesignerDetailsFragment())
-                .addToBackStack(null) // 백스택에 추가해서 뒤로 가기 가능
-                .commitAllowingStateLoss()
-        }
-
-        binding.rvDesigner.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvDesigner.adapter = DesignerAdapter(DesignerList, DesignerClickListener)
 
         return root
     }

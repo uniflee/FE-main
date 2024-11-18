@@ -59,8 +59,24 @@ dependencies {
     implementation ("androidx.camera:camera-extensions:1.3.4")
     implementation(libs.androidx.activity)
 
+    implementation ("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+
     // 테스트 종속성
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+    // 서버 통신
+    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation ("com.google.code.gson:gson:2.11.0")
+    implementation ("com.squareup.retrofit2:converter-scalars:2.11.0")
+    implementation ("com.squareup.moshi:moshi:1.13.0")
+    implementation ("com.squareup.moshi:moshi-kotlin:1.13.0")
+    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+
+    // 이미지
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
 }

@@ -105,7 +105,7 @@
         android:layout_marginStart="24dp"
         android:text="국민대학교 x 아크테릭스"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:fontFamily="@font/pretendardbold"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -123,7 +123,7 @@
             android:layout_marginStart="32dp"
             android:text="총 N개의 디자인"
             android:textSize="14sp"
-            android:textStyle="bold"/>
+            android:fontFamily="@font/pretendardbold"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -133,6 +133,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="32dp"
             android:text="인기순 정렬"
+            android:fontFamily="@font/pretendardregular"
             android:textSize="12sp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
