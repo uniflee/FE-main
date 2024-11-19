@@ -38,8 +38,12 @@ class DischargeNewRewardActivity : AppCompatActivity() {
         // 이전에 받아온거
         val receivedPoint = intent.getStringExtra("point")
         val receivedPredict = intent.getStringExtra("predict")
+        val receivedCo2 = intent.getStringExtra("co2")
         binding.point.text = receivedPoint
         binding.predict.text = receivedPredict
+        binding.co2.text = receivedCo2
+
+
 
         val textNumber = binding.textNumber
         val buttonMinus = binding.buttonMinus
