@@ -1,6 +1,7 @@
 package com.android.myapplication.store
 
 import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -62,6 +63,18 @@ class StoreProductDetailsActivity : AppCompatActivity() {
                     binding.designerName.text = response.designerName
                     binding.name.text = response.name
                     binding.price.text = "${response.price} 포인트"
+                    binding.price.paintFlags = binding.price.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
+                    val grade = App.prefs.getItem("grade", "BRONZE")
+                    val dcpercent = when(grade){
+                        "BRONZE" -> 98
+                        "SILVER" -> 95
+                        "GOLD" -> 92
+                        "PLATINUM" -> 88
+                        "DIAMOND" -> 80
+                        else -> 100
+                    }
+                    binding.discountPrice.text = "${(response.price*dcpercent)/100} 포인트"
                 }
             }catch (e: retrofit2.HttpException){
                 Log.e("StoreProductDetailsActivity", "Image Load Failed!: ${e.response()?.errorBody()?.string()}")
