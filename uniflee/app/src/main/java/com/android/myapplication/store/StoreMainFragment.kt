@@ -67,7 +67,7 @@ class StoreMainFragment : Fragment() {
 
         GlobalScope.launch {
             try{
-                val grade = App.prefs.getItem("grade", "BRONZE")
+                val grade = App.prefs.getItem("grade", "def")
                 Log.d("StoreMainFragment", "token: ${token}")
                 itemList = RetrofitClient.apiservice.getItemList(token)
                 Log.d("StoreMainFragment", "itemList : ${itemList}")

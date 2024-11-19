@@ -65,7 +65,7 @@ class StoreProductDetailsActivity : AppCompatActivity() {
                     binding.price.text = "${response.price} 포인트"
                     binding.price.paintFlags = binding.price.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
-                    val grade = App.prefs.getItem("grade", "BRONZE")
+                    val grade = App.prefs.getItem("grade", "def")
                     val dcpercent = when(grade){
                         "BRONZE" -> 98
                         "SILVER" -> 95
