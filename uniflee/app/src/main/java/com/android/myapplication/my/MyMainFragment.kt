@@ -16,6 +16,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class MyMainFragment : Fragment() {
     private var _binding: FragmentMyMainBinding?=null
@@ -72,8 +74,9 @@ class MyMainFragment : Fragment() {
     // 서버 데이터를 화면 데이터로 변환하는 함수
     private fun mapResponseToRecycler(ordersResponseDtoList: List<OrdersResponseDto>): List<OrderRecycler> {
         return ordersResponseDtoList.map { response ->
+            Log.e("date",response.createdAt)
             OrderRecycler(
-                date = "24.11.17",                // 날짜 임의로 지정
+                date = convertDateFormat(response.createdAt), // 날짜 임의로 지정
                 name = response.name,            // 제품명
                 designerName = response.designerName, // 디자이너 이름
                 featuredImageUrl = response.featuredImageUrl, // 이미지 URL
@@ -85,6 +88,15 @@ class MyMainFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    fun convertDateFormat(date: String): String {
+        // 원래 문자열을 LocalDateTime 객체로 파싱
+        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+        val dateTime = LocalDateTime.parse(date, inputFormatter)
+
+        // 원하는 형식으로 변환
+        val outputFormatter = DateTimeFormatter.ofPattern("yy.MM.dd")
+        return dateTime.format(outputFormatter)
     }
 
 }

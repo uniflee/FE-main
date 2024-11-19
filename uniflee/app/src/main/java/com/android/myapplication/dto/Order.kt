@@ -5,6 +5,7 @@ data class OrdersResponseDto(
     val name : String,
     val designerName : String,
     val featuredImageUrl : String?,
+    val createdAt : String,
     val count : Int,
     val point : Int,
     val totalPoint : Int
