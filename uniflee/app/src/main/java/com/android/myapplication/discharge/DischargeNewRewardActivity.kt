@@ -6,19 +6,14 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.android.myapplication.App
 import com.android.myapplication.MainActivity
-import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
-import com.android.myapplication.databinding.ActivityDischargeGuideBinding
 import com.android.myapplication.databinding.ActivityDischargeNewRewardBinding
 import com.android.myapplication.dto.RecyclingRequestDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class DischargeNewRewardActivity : AppCompatActivity() {
     private val binding: ActivityDischargeNewRewardBinding by lazy {
