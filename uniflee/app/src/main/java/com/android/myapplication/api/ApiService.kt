@@ -7,7 +7,7 @@ import com.android.myapplication.dto.MembershipResponseDto
 import com.android.myapplication.dto.OrderListResponseDto
 import com.android.myapplication.dto.OrderRequestDto
 import com.android.myapplication.dto.OrdersResponseDto
-import com.android.myapplication.dto.PreSignedUrlResponse
+import com.android.myapplication.dto.OwnItemDetailResponse
 import com.android.myapplication.dto.RecyclingRequestDto
 import com.android.myapplication.dto.RecyclingResponseDto
 import com.android.myapplication.dto.RecyclingStrategyResponse
@@ -20,15 +20,10 @@ import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    // AWS S3 이미지 업로드 및 다운로드
-    @GET("/api/aws/presigned-url")
-    suspend fun uploadImage(
-        @Query("type") type : String
-    ) : PreSignedUrlResponse
-
     // RecyclingController 재활용 관련 API
     @Multipart
     @POST("/image/analyze")
@@ -90,5 +85,11 @@ interface ApiService {
     @GET("/api/item")
     suspend fun getItemList(
         @Header("Authorization") Authorization: String
-    ) : ItemResponseDto
+    ) : MutableList<ItemResponseDto>
+
+    @GET("/api/item/{itemId}")
+    suspend fun getItemDetail(
+        @Header("Authorization") Authorization: String,
+        @Path("itemId") itemId: Int
+    ): OwnItemDetailResponse
 }
