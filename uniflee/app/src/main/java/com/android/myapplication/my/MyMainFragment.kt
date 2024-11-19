@@ -27,6 +27,7 @@ import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.StringReader
 
 class MyMainFragment : Fragment() {
@@ -54,21 +55,22 @@ class MyMainFragment : Fragment() {
             try {
                 val response = apiService.getOrderList(token)
                 Log.e("API Response", response.toString())
+
                 val cPoint = response.currentPoint.toString()
-                binding.root.post {
-                    binding.userName.text = App.prefs.getItem("name","noName")
-                    binding.userCurrentPoint.text = cPoint
-                }
                 // 서버 데이터를 RecyclerView 데이터로 변환
                 val itemList = mapResponseToRecycler(response.ordersResponseDtoList)
                 Log.e("LLLLIIIISST",itemList.toString())
 
-                // 어댑터 연결
-                recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                recyclerView.adapter = OrderAdapter(itemList)
+                withContext(Dispatchers.Main) {
+                    binding.userName.text = App.prefs.getItem("name", "noName")
+                    binding.userCurrentPoint.text = response.currentPoint.toString()
+
+                    // 어댑터 연결
+                    recyclerView.adapter = OrderAdapter(itemList)
+                }
 
             } catch (e: Exception) {
-                    Log.e("Error", e.message.toString())
+                Log.e("Error", e.message.toString())
             }
         }
 
@@ -92,6 +94,10 @@ class MyMainFragment : Fragment() {
                 point = response.point      // 포인트
             )
         }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
