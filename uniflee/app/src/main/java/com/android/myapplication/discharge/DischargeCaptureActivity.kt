@@ -134,7 +134,20 @@ class DischargeCaptureActivity : AppCompatActivity() {
                 val response = apiService.checkPhoto(token, body)
                 if (response.isSuccessful) {
                     Log.d("API Response", "Upload successful: ${response.body()}")
-                    response.body()?.let { intentGuide(it.predict) }
+                    var realPre = ""
+                    when(response.body()?.predict){
+                        "철캔" -> realPre = "IRON_CAN"
+                        "알루미늄캔" -> realPre = "ALUMINUM_CAN"
+                        "종이" -> realPre = "PAPER"
+                        "무색 단일" -> realPre = "COLORLESS_PET"
+                        "유색 단일" -> realPre = "COLORED_PET"
+                        "스티로폼" -> realPre = "STYROFOAM"
+                        "비닐" -> realPre = "VINYL"
+                        "갈색 유리병" -> realPre = "BROWN_GLASS"
+                        "녹색 유리병" -> realPre = "GREEN_GLASS"
+                        "투명 유리병" -> realPre = "CLEAR_GLASS"
+                    }
+                    response.body()?.let { intentGuide(realPre) }
                 } else {
                     Log.e(
                         "API Response",
