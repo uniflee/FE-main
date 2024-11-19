@@ -8,9 +8,6 @@ import com.android.myapplication.dto.OrderListResponseDto
 import com.android.myapplication.dto.OrderRequestDto
 import com.android.myapplication.dto.OrdersResponseDto
 import com.android.myapplication.dto.OwnItemDetailResponse
-import com.android.myapplication.dto.PresignedUrlResponse
-import com.android.myapplication.dto.ProfileImageUpdateRequest
-import com.android.myapplication.dto.PreSignedUrlResponse
 import com.android.myapplication.dto.RecyclingRequestDto
 import com.android.myapplication.dto.RecyclingResponseDto
 import com.android.myapplication.dto.RecyclingStrategyResponse
@@ -23,6 +20,7 @@ import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
