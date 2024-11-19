@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.android.myapplication.App
 import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
@@ -42,20 +44,35 @@ class StoreMainFragment : Fragment() {
                 .addToBackStack(null)
                 .commitAllowingStateLoss()
         }
-        binding.backgroundImageView.setOnClickListener {
+
+        binding.rvCard.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, StoreDesignerDetailsFragment())
                 .addToBackStack(null)
                 .commitAllowingStateLoss()
         }
 
+        val imageList = listOf(
+            R.drawable.img_store_card1,
+            R.drawable.img_store_card2,
+            R.drawable.img_store_card3,
+            R.drawable.img_store_card4
+        )
+
+        binding.rvCard.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvCard.adapter = CardAdapter(imageList)
+
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.rvCard)
+
         GlobalScope.launch {
             try{
+                val grade = App.prefs.getItem("grade", "BRONZE")
                 Log.d("StoreMainFragment", "token: ${token}")
                 itemList = RetrofitClient.apiservice.getItemList(token)
                 Log.d("StoreMainFragment", "itemList : ${itemList}")
                 withContext(Dispatchers.Main){
-                    val productAdapter = ProductAdapter(itemList)
+                    val productAdapter = ProductAdapter(itemList, grade)
                     binding.rvGoods.layoutManager = GridLayoutManager(requireContext(), 2)
                     binding.rvGoods.adapter = productAdapter
                 }
