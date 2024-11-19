@@ -1,11 +1,8 @@
 package com.android.myapplication.api
 
-import com.android.myapplication.dto.BackgroundImageUpdateRequest
 import com.android.myapplication.dto.DesignerInfoResponse
-import com.android.myapplication.dto.DesignerNameUpdateRequest
-import com.android.myapplication.dto.ItemRequestDto
+import com.android.myapplication.dto.ImageAnalyzeResponse
 import com.android.myapplication.dto.ItemResponseDto
-import com.android.myapplication.dto.Login
 import com.android.myapplication.dto.MembershipResponseDto
 import com.android.myapplication.dto.OrderListResponseDto
 import com.android.myapplication.dto.OrderRequestDto
@@ -13,31 +10,31 @@ import com.android.myapplication.dto.OrdersResponseDto
 import com.android.myapplication.dto.OwnItemDetailResponse
 import com.android.myapplication.dto.PresignedUrlResponse
 import com.android.myapplication.dto.ProfileImageUpdateRequest
+import com.android.myapplication.dto.PreSignedUrlResponse
 import com.android.myapplication.dto.RecyclingRequestDto
 import com.android.myapplication.dto.RecyclingResponseDto
+import com.android.myapplication.dto.RecyclingStrategyResponse
+import okhttp3.MultipartBody
+import retrofit2.Response
 import com.android.myapplication.dto.UserInfoResponseDto
 import retrofit2.http.Body
-import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
-import retrofit2.http.PATCH
+import retrofit2.http.Multipart
 import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
-    // google-controller
-    // 아직 개발 안됨
-    @POST("/api/google/write")
-    suspend fun addExcelList()
+    // RecyclingController 재활용 관련 API
+    @Multipart
+    @POST("/image/analyze")
+    suspend fun checkPhoto(
+        @Header("Authorization") Authorization: String,
+        @Part image: MultipartBody.Part
+    ) : Response<ImageAnalyzeResponse>
 
-    // AWS S3 이미지 업로드 및 다운로드
-    @GET("/api/aws/presigned-url")
-    fun getPresignedUrl(
-        @Query("type") type: String
-    ): PresignedUrlResponse
-
-    // RecyclingController 재활용 관련 API - 나중에
+    // 이건안쓰는듯..?
     @GET("/api/recycling")
     suspend fun getRecyclingList(
         @Header("Authorization") Authorization: String
@@ -51,7 +48,7 @@ interface ApiService {
     suspend fun getRecyclingGuide(
         @Header("Authorization") Authorization: String,
         @Query("itemType") itemType : String
-    ) : String
+    ) : RecyclingStrategyResponse
 
     // UserController 유저 관련 API
     @GET("/api/user/membership")
@@ -69,7 +66,7 @@ interface ApiService {
         @Header("Authorization") Authorization: String
     ) : DesignerInfoResponse
 
-    // OrdersController 주문 관련 API - 나중에
+    // OrdersController 주문 관련 API
     @GET("/api/orders")
     suspend fun getOrderList(
         @Header("Authorization") Authorization: String

@@ -6,13 +6,14 @@
     android:paddingBottom="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/date"
+        android:id="@+id/date_box"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -22,17 +23,20 @@
             android:textSize="16sp"
             android:textColor="@color/text"
             android:text="24.10.29"/>
-        <ImageView
+        <TextView
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_complete_payment"/>
+            android:text="결제완료"
+            android:textSize="12sp"
+            android:fontFamily="@font/pretendardregular"
+            android:background="@drawable/bg_state" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
         android:id="@+id/content"
-        app:layout_constraintTop_toBottomOf="@id/date"
+        app:layout_constraintTop_toBottomOf="@id/date_box"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="14dp"
@@ -40,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:background="#D9D9D9"
+            android:id="@+id/image"
             android:layout_width="91dp"
             android:layout_height="91dp"/>
         <LinearLayout
@@ -50,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/designer_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="3dp"
@@ -57,6 +62,7 @@
                 android:textSize="12sp"
                 android:text="디자이너명"/>
             <TextView
+                android:id="@+id/product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -65,6 +71,7 @@
                 android:textColor="@color/black"
                 android:text="제품명"/>
             <TextView
+                android:id="@+id/point_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pretendardsemibold"
@@ -79,8 +86,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/content"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginTop="25dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/img_underline"/>
 
