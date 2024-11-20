@@ -6,19 +6,14 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.android.myapplication.App
 import com.android.myapplication.MainActivity
-import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
-import com.android.myapplication.databinding.ActivityDischargeGuideBinding
 import com.android.myapplication.databinding.ActivityDischargeNewRewardBinding
 import com.android.myapplication.dto.RecyclingRequestDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class DischargeNewRewardActivity : AppCompatActivity() {
     private val binding: ActivityDischargeNewRewardBinding by lazy {
@@ -38,8 +33,12 @@ class DischargeNewRewardActivity : AppCompatActivity() {
         // 이전에 받아온거
         val receivedPoint = intent.getStringExtra("point")
         val receivedPredict = intent.getStringExtra("predict")
+        val receivedCo2 = intent.getStringExtra("co2")
         binding.point.text = receivedPoint
         binding.predict.text = receivedPredict
+        binding.co2.text = receivedCo2
+
+
 
         val textNumber = binding.textNumber
         val buttonMinus = binding.buttonMinus

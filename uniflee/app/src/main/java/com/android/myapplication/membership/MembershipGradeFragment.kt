@@ -13,7 +13,6 @@ import com.android.myapplication.databinding.FragmentMembershipGradeBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.sql.Types.NULL
 
 class MembershipGradeFragment : Fragment() {
     private var _binding: FragmentMembershipGradeBinding?=null

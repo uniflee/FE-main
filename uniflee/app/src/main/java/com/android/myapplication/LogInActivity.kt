@@ -7,7 +7,6 @@ import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.android.myapplication.databinding.ActivityLogInBinding
-import java.net.HttpURLConnection
 
 class LogInActivity : AppCompatActivity() {
 

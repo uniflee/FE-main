@@ -1,33 +1,23 @@
 package com.android.myapplication.my
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.JsonReader
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.myapplication.App
 import com.android.myapplication.api.RetrofitClient
-import com.android.myapplication.databinding.FragmentDischargeMainBinding
-import com.android.myapplication.databinding.FragmentMembershipGradeBinding
 import com.android.myapplication.databinding.FragmentMyMainBinding
-import com.android.myapplication.discharge.DischargeCaptureActivity
-import com.android.myapplication.dto.OrderListResponseDto
 import com.android.myapplication.dto.OrderRecycler
-import com.android.myapplication.dto.OrderRequestDto
 import com.android.myapplication.dto.OrdersResponseDto
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
-import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.io.StringReader
+import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class MyMainFragment : Fragment() {
     private var _binding: FragmentMyMainBinding?=null
@@ -54,21 +44,22 @@ class MyMainFragment : Fragment() {
             try {
                 val response = apiService.getOrderList(token)
                 Log.e("API Response", response.toString())
+
                 val cPoint = response.currentPoint.toString()
-                binding.root.post {
-                    binding.userName.text = App.prefs.getItem("name","noName")
-                    binding.userCurrentPoint.text = cPoint
-                }
                 // 서버 데이터를 RecyclerView 데이터로 변환
                 val itemList = mapResponseToRecycler(response.ordersResponseDtoList)
                 Log.e("LLLLIIIISST",itemList.toString())
 
-                // 어댑터 연결
-                recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                recyclerView.adapter = OrderAdapter(itemList)
+                withContext(Dispatchers.Main) {
+                    binding.userName.text = App.prefs.getItem("name", "noName")
+                    binding.userCurrentPoint.text = response.currentPoint.toString()
+
+                    // 어댑터 연결
+                    recyclerView.adapter = OrderAdapter(itemList)
+                }
 
             } catch (e: Exception) {
-                    Log.e("Error", e.message.toString())
+                Log.e("Error", e.message.toString())
             }
         }
 
@@ -83,8 +74,9 @@ class MyMainFragment : Fragment() {
     // 서버 데이터를 화면 데이터로 변환하는 함수
     private fun mapResponseToRecycler(ordersResponseDtoList: List<OrdersResponseDto>): List<OrderRecycler> {
         return ordersResponseDtoList.map { response ->
+            Log.e("date",response.createdAt)
             OrderRecycler(
-                date = "24.11.17",                // 날짜 임의로 지정
+                date = convertDateFormat(response.createdAt), // 날짜 임의로 지정
                 name = response.name,            // 제품명
                 designerName = response.designerName, // 디자이너 이름
                 featuredImageUrl = response.featuredImageUrl, // 이미지 URL
@@ -92,6 +84,19 @@ class MyMainFragment : Fragment() {
                 point = response.point      // 포인트
             )
         }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+    fun convertDateFormat(date: String): String {
+        // 원래 문자열을 LocalDateTime 객체로 파싱
+        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
+        val dateTime = LocalDateTime.parse(date, inputFormatter)
+
+        // 원하는 형식으로 변환
+        val outputFormatter = DateTimeFormatter.ofPattern("yy.MM.dd")
+        return dateTime.format(outputFormatter)
     }
 
 }
