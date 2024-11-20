@@ -17,32 +17,33 @@
         android:background="@drawable/bg_membership_main_img"
         android:layout_height="0dp"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/header_title"
+        <ImageView
+            android:id="@+id/main_img"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_membership_main"/>
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/main_img"
+            app:layout_constraintBottom_toTopOf="@id/go_grade_btn"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_marginStart="6dp"
             android:textColor="@color/white"
             android:textSize="18sp"
+            android:translationY="-20dp"
             android:fontFamily="@font/pretendardbold"
             android:text="과연 나는 얼마나\n환경 보호에 기여하고 있을까?"/>
-        <ImageView
-            app:layout_constraintTop_toBottomOf="@id/header_title"
-            app:layout_constraintBottom_toTopOf="@id/go_grade_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/img_membership_main"/>
         <TextView
             android:id="@+id/go_grade_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/bg_go_grade_btn"
             android:gravity="center"
             android:textColor="@color/white"
@@ -127,7 +128,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/go_grade_tips"
                 android:background="@drawable/bg_membershipmain"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
@@ -160,7 +161,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/go_grade_benefit"
                 android:background="@drawable/bg_membershipmain"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
