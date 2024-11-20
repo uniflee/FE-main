@@ -19,24 +19,24 @@
         android:orientation="vertical">
         <ImageView
             android:id="@+id/main_img"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/text"
             android:layout_marginTop="35dp"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:src="@drawable/img_membership_main"/>
         <TextView
-            app:layout_constraintTop_toBottomOf="@id/main_img"
+            android:id="@id/text"
             app:layout_constraintBottom_toTopOf="@id/go_grade_btn"
-            android:layout_marginBottom="10dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:translationY="-10dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/pretendardbold"
             android:text="과연 나는 환경보호에\n얼마나 기여하고 있을까?"/>
         <TextView
