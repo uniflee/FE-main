@@ -27,7 +27,11 @@ data class ItemResponseDto(
     val price : Int
 )
 
-data class PreSignedUrlResponse(
-    val preSignedUrl : String,
-    val resourceUrl : String
+data class OwnItemDetailResponse(
+    val id : Int,
+    val featuredImageUrl : String,
+    val designerName : String,
+    val name : String,
+    val price : Int,
+    val descriptions: MutableList<ItemDescription>
 )

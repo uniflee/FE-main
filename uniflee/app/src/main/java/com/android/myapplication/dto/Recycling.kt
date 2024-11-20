@@ -17,6 +17,7 @@ data class ImageAnalyzeResponse(
 
 data class RecyclingStrategyResponse(
     val point: Int,
+    val co2 : Int,
     val disposalInstructions1 : String,
     val disposalInstructions2 : String,
     val disposalInstructions3 : String

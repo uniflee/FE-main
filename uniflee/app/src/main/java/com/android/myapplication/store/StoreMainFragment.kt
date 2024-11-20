@@ -1,21 +1,35 @@
 package com.android.myapplication.store
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import com.android.myapplication.App
 import com.android.myapplication.R
+import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.FragmentStoreMainBinding
+import com.android.myapplication.dto.ItemResponseDto
 import com.android.myapplication.membership.MembershipGradeFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class StoreMainFragment : Fragment() {
 
     private var _binding: FragmentStoreMainBinding?=null
     private val binding get() = _binding!!
+
+    private var itemList: MutableList<ItemResponseDto> = mutableListOf()
+
+    private val token = "Bearer ${App.prefs.getItem("token", "")}"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,31 +41,49 @@ class StoreMainFragment : Fragment() {
         binding.goGradeBtn.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, MembershipGradeFragment())
-                .addToBackStack(null) // 백스택에 추가해서 뒤로 가기 가능
+                .addToBackStack(null)
                 .commitAllowingStateLoss()
         }
 
-        val itemList = listOf(
-            ProductContents(R.drawable.bg_gray, "디자이너1", "상품1", 1111),
-            ProductContents(R.drawable.bg_gray, "디자이너2", "상품2", 2222),
-            ProductContents(R.drawable.bg_gray, "디자이너3", "상품3", 3333),
-            ProductContents(R.drawable.bg_gray, "디자이너3", "상품3", 3333),
-            ProductContents(R.drawable.bg_gray, "디자이너4", "상품4", 4444)
+        binding.rvCard.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, StoreDesignerDetailsFragment())
+                .addToBackStack(null)
+                .commitAllowingStateLoss()
+        }
+
+        val imageList = listOf(
+            R.drawable.img_store_card1,
+            R.drawable.img_store_card2,
+            R.drawable.img_store_card3,
+            R.drawable.img_store_card4
         )
 
-        binding.rvGoods.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.rvGoods.adapter = ProductAdapter(itemList) { item ->
-            val intent = Intent(context, StoreProductDetailsActivity::class.java).apply {
-                putExtra("PRODUCT_IMAGE", item.ProductImage)
-                putExtra("STORE_NAME", item.StoreName)
-                putExtra("PRODUCT_NAME", item.ProductName)
-                putExtra("PRODUCT_PRICE", item.ProductPrice)
+        binding.rvCard.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvCard.adapter = CardAdapter(imageList)
+
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.rvCard)
+
+        GlobalScope.launch {
+            try{
+                val grade = App.prefs.getItem("grade", "def")
+                Log.d("StoreMainFragment", "token: ${token}")
+                itemList = RetrofitClient.apiservice.getItemList(token)
+                Log.d("StoreMainFragment", "itemList : ${itemList}")
+                withContext(Dispatchers.Main){
+                    val productAdapter = ProductAdapter(itemList, grade)
+                    binding.rvGoods.layoutManager = GridLayoutManager(requireContext(), 2)
+                    binding.rvGoods.adapter = productAdapter
+                }
+            } catch (e: retrofit2.HttpException){
+                Log.e("StoreMainFragment", "ItemList Load Failed!: ${e.response()?.errorBody()?.string()}")
             }
-            startActivity(intent)
         }
 
         return root
     }
+
 
     override fun onResume() {
         super.onResume()

@@ -5,13 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.android.myapplication.App
-import com.android.myapplication.R
 import com.android.myapplication.api.RetrofitClient
 import com.android.myapplication.databinding.ActivityDischargeGuideBinding
-import com.android.myapplication.databinding.ActivityMembershipBenefitBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -22,6 +18,7 @@ class DischargeGuideActivity : AppCompatActivity() {
         ActivityDischargeGuideBinding.inflate(layoutInflater)
     }
     var point: Int? = null // 외부에 Mutable 변수 선언
+    var co2: Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,10 +31,12 @@ class DischargeGuideActivity : AppCompatActivity() {
         if (receivedPredict != null) {
             getInstructions(receivedPredict) { apiresponse ->
                 binding.itemType.text = receivedPredict
-                binding.inst1.text = apiresponse?.get(1) as String
-                binding.inst2.text = apiresponse.get(2) as String
-                binding.inst3.text = apiresponse.get(3) as String
+                binding.inst1.text = apiresponse?.get(2) as String
+                binding.inst2.text = apiresponse.get(3) as String
+                binding.inst3.text = apiresponse.get(4) as String
                 point = apiresponse[0] as Int
+                co2 = apiresponse[1] as Int
+
             }
         }
 
@@ -46,6 +45,7 @@ class DischargeGuideActivity : AppCompatActivity() {
             val intent = Intent(this, DischargeNewRewardActivity::class.java)
             intent.putExtra("point",point.toString())
             intent.putExtra("predict",receivedPredict)
+            intent.putExtra("co2",co2.toString())
             startActivity(intent)
         }
     }
@@ -66,11 +66,12 @@ class DischargeGuideActivity : AppCompatActivity() {
                 Log.e("API response", response.toString())
 
                 val point = response.point
+                val co2 = response.co2
                 val ins1 = response.disposalInstructions1
                 val ins2 = response.disposalInstructions2
                 val ins3 = response.disposalInstructions3
 
-                val rst = listOf(point, ins1, ins2, ins3)
+                val rst = listOf(point, co2, ins1, ins2, ins3)
 
                 withContext(Dispatchers.Main) {
                     callback(rst) // 결과 전달

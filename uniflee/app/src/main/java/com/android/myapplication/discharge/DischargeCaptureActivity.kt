@@ -18,6 +18,7 @@ import com.android.myapplication.databinding.ActivityDischargeCaptureBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -48,6 +49,8 @@ class DischargeCaptureActivity : AppCompatActivity() {
         }
 
         btnConfirm.setOnClickListener {
+            binding.cameraText1.text = "인식 중입니다. 완료 시까지"
+            binding.cameraText2.text = "화면을 터치하지 마세요"
             captureAndSendPhoto()
         }
     }
@@ -134,11 +137,29 @@ class DischargeCaptureActivity : AppCompatActivity() {
                 val response = apiService.checkPhoto(token, body)
                 if (response.isSuccessful) {
                     Log.d("API Response", "Upload successful: ${response.body()}")
-                    response.body()?.let { intentGuide(it.predict) }
+                    var realPre = ""
+                    when(response.body()?.predict){
+                        "철캔" -> realPre = "IRON_CAN"
+                        "알루미늄캔" -> realPre = "ALUMINUM_CAN"
+                        "종이" -> realPre = "PAPER"
+                        "무색 단일" -> realPre = "COLORLESS_PET"
+                        "유색 단일" -> realPre = "COLORED_PET"
+                        "스티로폼" -> realPre = "STYROFOAM"
+                        "비닐" -> realPre = "VINYL"
+                        "갈색 유리병" -> realPre = "BROWN_GLASS"
+                        "녹색 유리병" -> realPre = "GREEN_GLASS"
+                        "투명 유리병" -> realPre = "CLEAR_GLASS"
+                    }
+                    response.body()?.let { intentGuide(realPre) }
                 } else {
+                    withContext(Dispatchers.Main) {
+                        binding.cameraText1.text = "인식에 실패했습니다."
+                        binding.cameraText2.text = "다시 시도하세요"
+                    }
                     Log.e(
                         "API Response",
                         "Upload failed: ${response.code()} ${response.errorBody()?.string()}"
+
                     )
                 }
             } catch (e: Exception) {

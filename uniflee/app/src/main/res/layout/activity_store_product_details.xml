@@ -48,12 +48,14 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/feature_image"
                 android:layout_width="match_parent"
                 android:layout_height="393dp"
                 android:src="@drawable/img_store_main"
                 android:scaleType="centerCrop"/>
 
             <TextView
+                android:id="@+id/designer_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -64,6 +66,7 @@
                 android:textColor="#000000"/>
 
             <TextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
@@ -74,9 +77,21 @@
                 android:textColor="#000000"/>
 
             <TextView
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="24dp"
+                android:text="6,000 포인트"
+                android:textSize="13sp"
+                android:fontFamily="@font/pretendardextrabold"
+                android:textColor="#C5C5C5"/>
+
+            <TextView
+                android:id="@+id/discount_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
                 android:layout_marginStart="24dp"
                 android:text="6,000 포인트"
                 android:textSize="20sp"
