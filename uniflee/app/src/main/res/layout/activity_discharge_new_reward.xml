@@ -7,12 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".discharge.DischargeNewRewardActivity">
     <ScrollView
-        android:layout_marginBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/title"
                 app:layout_constraintTop_toTopOf="parent"
@@ -138,7 +137,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
                     android:layout_gravity="center"
@@ -217,7 +216,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_marginTop="17dp"
+                    android:layout_marginTop="40dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
@@ -260,7 +259,6 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/pretendardsemibold"
                 android:textSize="18sp"
-                android:layout_marginBottom="60dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:gravity="center"
