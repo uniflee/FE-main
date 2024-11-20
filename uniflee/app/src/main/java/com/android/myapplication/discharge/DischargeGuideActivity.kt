@@ -18,7 +18,7 @@ class DischargeGuideActivity : AppCompatActivity() {
         ActivityDischargeGuideBinding.inflate(layoutInflater)
     }
     var point: Int? = null // 외부에 Mutable 변수 선언
-    var co2: Int? = null
+    var co2: Double? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,19 +27,17 @@ class DischargeGuideActivity : AppCompatActivity() {
             onBackPressed()
         }
         val receivedPredict = intent.getStringExtra("predict")
-
         if (receivedPredict != null) {
             getInstructions(receivedPredict) { apiresponse ->
-                binding.itemType.text = receivedPredict
-                binding.inst1.text = apiresponse?.get(2) as String
-                binding.inst2.text = apiresponse.get(3) as String
-                binding.inst3.text = apiresponse.get(4) as String
+                binding.itemType.text = apiresponse?.get(2) as String
+                binding.inst1.text = apiresponse.get(3) as String
+                binding.inst2.text = apiresponse.get(4) as String
+                binding.inst3.text = apiresponse.get(5) as String
                 point = apiresponse[0] as Int
-                co2 = apiresponse[1] as Int
+                co2 = apiresponse[1] as Double
 
             }
         }
-
 
         binding.goNewReward.setOnClickListener {
             val intent = Intent(this, DischargeNewRewardActivity::class.java)
@@ -67,11 +65,12 @@ class DischargeGuideActivity : AppCompatActivity() {
 
                 val point = response.point
                 val co2 = response.co2
+                val displayName = response.displayName
                 val ins1 = response.disposalInstructions1
                 val ins2 = response.disposalInstructions2
                 val ins3 = response.disposalInstructions3
 
-                val rst = listOf(point, co2, ins1, ins2, ins3)
+                val rst = listOf(point, co2, displayName,ins1, ins2, ins3)
 
                 withContext(Dispatchers.Main) {
                     callback(rst) // 결과 전달
