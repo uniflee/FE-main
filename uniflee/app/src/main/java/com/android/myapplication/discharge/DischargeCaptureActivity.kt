@@ -18,6 +18,7 @@ import com.android.myapplication.databinding.ActivityDischargeCaptureBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -48,6 +49,8 @@ class DischargeCaptureActivity : AppCompatActivity() {
         }
 
         btnConfirm.setOnClickListener {
+            binding.cameraText1.text = "인식 중입니다. 완료 시까지"
+            binding.cameraText2.text = "화면을 터치하지 마세요"
             captureAndSendPhoto()
         }
     }
@@ -149,9 +152,14 @@ class DischargeCaptureActivity : AppCompatActivity() {
                     }
                     response.body()?.let { intentGuide(realPre) }
                 } else {
+                    withContext(Dispatchers.Main) {
+                        binding.cameraText1.text = "인식에 실패했습니다."
+                        binding.cameraText2.text = "다시 시도하세요"
+                    }
                     Log.e(
                         "API Response",
                         "Upload failed: ${response.code()} ${response.errorBody()?.string()}"
+
                     )
                 }
             } catch (e: Exception) {
