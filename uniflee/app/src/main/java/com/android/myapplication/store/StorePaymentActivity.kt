@@ -1,5 +1,6 @@
 package com.android.myapplication.store
 
+import android.graphics.Paint
 import android.net.http.HttpException
 import android.os.Bundle
 import android.util.Log
@@ -47,8 +48,21 @@ class StorePaymentActivity : AppCompatActivity() {
                 binding.designerName.text = prod.designerName
                 binding.name.text = prod.name
                 binding.price.text = "${prod.price} 포인트"
-                binding.totalPoint.text = "${prod.price} 포인트"
+                binding.price.paintFlags = binding.price.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 binding.currentPoint.text = "보유 포인트 ${curpoint}pt"
+
+                val grade = App.prefs.getItem("grade", "def")
+                val dcpercent = when(grade){
+                    "BRONZE" -> 98
+                    "SILVER" -> 95
+                    "GOLD" -> 92
+                    "PLATINUM" -> 88
+                    "DIAMOND" -> 80
+                    else -> 100
+                }
+
+                binding.totalPoint.text = "${(prod.price*dcpercent)/100} 포인트"
+                binding.discountPrice.text = "${(prod.price*dcpercent)/100} 포인트"
             }
         }
 

@@ -53,6 +53,7 @@ class StoreDesignerDetailsFragment : Fragment() {
 
         GlobalScope.launch {
             try {
+                val grade = App.prefs.getItem("grade", "BRONZE")
                 val response = apiService.getDesignerInfo(token)
                 Log.d("StoreDesignerDetailsFragment", "Designer Info: ${response}")
                 itemList = apiService.getItemList(token)
@@ -67,8 +68,8 @@ class StoreDesignerDetailsFragment : Fragment() {
                         .load(bgImageUrl)
                         .into(binding.backgroundImageView)
                     binding.rvDetailsProduct.layoutManager = GridLayoutManager(requireContext(), 2)
-                    binding.rvDetailsProduct.adapter = ProductAdapter(itemList)
-                    binding.total.text = "총 ${ProductAdapter(itemList).itemCount}개의 디자인"
+                    binding.rvDetailsProduct.adapter = ProductAdapter(itemList,grade)
+                    binding.total.text = "총 ${ProductAdapter(itemList,grade).itemCount}개의 디자인"
                 }
             } catch (e: retrofit2.HttpException){
                 Log.e("StoreDesignerDetailsFragment", "Info Load Failed!: ${e.response()?.errorBody()?.string()}")

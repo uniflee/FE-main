@@ -108,7 +108,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@id/product_image"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -131,6 +131,15 @@
 
                     <TextView
                         android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="6,000 포인트"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/pretendardsemibold"
+                        android:textColor="#C5C5C5"/>
+
+                    <TextView
+                        android:id="@+id/discount_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="6,000 포인트"
@@ -179,55 +188,12 @@
                     android:textColor="#26A4FF"/>
 
                 <TextView
-                    android:id="@+id/use_point_text"
+                    android:id="@+id/current_point"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/total_point_text"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="22dp"
-                    android:text="포인트 사용하기"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/pretendardregular"
-                    android:textColor="#3E3E3E"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/use_point_text"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="110dp"
-                    android:background="@drawable/bg_payedittext"
-                    android:paddingVertical="12dp"
-                    android:paddingStart="15dp"
-                    android:hint="0pt"
-                    android:textColorHint="#3E3E3E"
-                    android:fontFamily="@font/pretendardmedium"
-                    android:textSize="14sp"/>
-
-                <TextView
-                    android:id="@+id/point_use_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/use_point_text"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="8dp"
-                    android:background="#E9E9E9"
-                    android:paddingVertical="12dp"
-                    android:paddingHorizontal="26dp"
-                    android:text="사용하기"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/pretendardmedium"
-                    android:textColor="#000000"/>
-
-                <TextView
-                    android:id="@+id/current_point"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/point_use_btn"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginTop="6dp"
-                    android:layout_marginStart="5dp"
                     android:text="보유 포인트 0000p"
                     android:textSize="12sp"
                     android:textColor="#666666"/>

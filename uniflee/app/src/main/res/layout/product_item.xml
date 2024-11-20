@@ -50,6 +50,16 @@
         android:layout_marginBottom="1dp"
         android:text="0000 포인트"
         android:fontFamily="@font/pretendardbold"
+        android:textSize="10sp"
+        android:textColor="#C5C5C5"/>
+
+    <TextView
+        android:id="@+id/rv_discount_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:text="0000 포인트"
+        android:fontFamily="@font/pretendardbold"
         android:textSize="14sp"
         android:textColor="#3E3E3E"/>
 
