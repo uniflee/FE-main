@@ -309,19 +309,20 @@
                                 android:fontFamily="@font/pretendardextralight"
                                 android:text="약 "/>
                             <TextView
+                                android:id="@+id/data1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
                                 android:fontFamily="@font/pretendardsemibold"
                                 android:textColor="@color/text"
-                                android:text="10kg의 플라스틱"/>
+                                android:text="10kg"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
                                 android:textColor="@color/text"
                                 android:fontFamily="@font/pretendardextralight"
-                                android:text="이"/>
+                                android:text="의 플라스틱이"/>
                         </LinearLayout>
                         <TextView
                             android:layout_width="wrap_content"
@@ -389,6 +390,7 @@
                                 android:fontFamily="@font/pretendardextralight"
                                 android:text="약 "/>
                             <TextView
+                                android:id="@+id/data2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
@@ -471,6 +473,7 @@
                                 android:fontFamily="@font/pretendardextralight"
                                 android:text="약 "/>
                             <TextView
+                                android:id="@+id/data3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
