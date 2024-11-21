@@ -7,247 +7,256 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".membership.MembershipBenefitActivity">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/title"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="40dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/back_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:padding="15dp"
-            android:src="@drawable/ic_back_btn"/>
-        <TextView
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:padding="7dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:fontFamily="@font/pretendardbold"
-            android:text="멤버십 혜택"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:orientation="vertical">
-        <LinearLayout
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:background="@drawable/bg_grade_bronze"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="81dp"
-                android:layout_height="81dp"
-                android:src="@drawable/img_grade_bronze"/>
-            <LinearLayout
-                android:layout_marginStart="13dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-                <TextView
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/title"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/back_btn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_back_btn"/>
+                <TextView
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:padding="7dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
                     android:fontFamily="@font/pretendardbold"
-                    android:textSize="16sp"
-                    android:textColor="@color/text"
-                    android:text="Bronze 등급"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:textSize="12sp"
-                    android:textColor="@color/text"
-                    android:fontFamily="@font/pretendardregular"
-                    android:text="0~499 리워드 포인트 획득 시 달성"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/text"
-                    android:fontFamily="@font/pretendardsemibold"
-                    android:text="모든 상품 2% 할인"/>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_grade"
-            android:layout_marginBottom="2dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="81dp"
-                android:layout_height="81dp"
-                android:src="@drawable/img_grade_silver"/>
+                    android:text="멤버십 혜택"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <LinearLayout
-                android:layout_marginStart="13dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:paddingBottom="50dp"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendardbold"
-                    android:textSize="16sp"
-                    android:textColor="@color/text"
-                    android:text="Silver 등급"/>
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/bg_grade_bronze"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="81dp"
+                        android:layout_height="81dp"
+                        android:src="@drawable/img_grade_bronze"/>
+                    <LinearLayout
+                        android:layout_marginStart="13dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/pretendardbold"
+                            android:textSize="16sp"
+                            android:textColor="@color/text"
+                            android:text="Bronze 등급"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardregular"
+                            android:text="0~499 리워드 포인트 획득 시 달성"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardsemibold"
+                            android:text="모든 상품 2% 할인"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:textSize="12sp"
-                    android:textColor="@color/text"
-                    android:fontFamily="@font/pretendardregular"
-                    android:text="500~999 리워드 포인트 획득 시 달성"/>
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:background="@drawable/bg_grade"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="81dp"
+                        android:layout_height="81dp"
+                        android:src="@drawable/img_grade_silver"/>
+                    <LinearLayout
+                        android:layout_marginStart="13dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/pretendardbold"
+                            android:textSize="16sp"
+                            android:textColor="@color/text"
+                            android:text="Silver 등급"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardregular"
+                            android:text="500~999 리워드 포인트 획득 시 달성"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardsemibold"
+                            android:text="모든 상품 5% 할인"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/text"
-                    android:fontFamily="@font/pretendardsemibold"
-                    android:text="모든 상품 5% 할인"/>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_grade"
-            android:layout_marginBottom="2dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="81dp"
-                android:layout_height="81dp"
-                android:src="@drawable/img_grade_gold"/>
-            <LinearLayout
-                android:layout_marginStart="13dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:background="@drawable/bg_grade"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="81dp"
+                        android:layout_height="81dp"
+                        android:src="@drawable/img_grade_gold"/>
+                    <LinearLayout
+                        android:layout_marginStart="13dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/pretendardbold"
+                            android:textSize="16sp"
+                            android:textColor="@color/text"
+                            android:text="Gold 등급"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardregular"
+                            android:text="1000~1999 리워드 포인트 획득 시 달성"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="@color/text"
+                            android:text="모든 상품 8% 할인"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendardbold"
-                    android:textSize="16sp"
-                    android:textColor="@color/text"
-                    android:text="Gold 등급"/>
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:background="@drawable/bg_grade"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="81dp"
+                        android:layout_height="81dp"
+                        android:src="@drawable/img_grade_platinum"/>
+                    <LinearLayout
+                        android:layout_marginStart="13dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/pretendardbold"
+                            android:textSize="16sp"
+                            android:textColor="@color/text"
+                            android:text="Platinum 등급"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardregular"
+                            android:text="2000~4999 리워드 포인트 획득 시 달성"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardsemibold"
+                            android:text="모든 상품 12% 할인"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:textSize="12sp"
-                    android:textColor="@color/text"
-                    android:fontFamily="@font/pretendardregular"
-                    android:text="1000~1999 리워드 포인트 획득 시 달성"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/text"
-                    android:text="모든 상품 8% 할인"/>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_grade"
-            android:layout_marginBottom="2dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="81dp"
-                android:layout_height="81dp"
-                android:src="@drawable/img_grade_platinum"/>
-            <LinearLayout
-                android:layout_marginStart="13dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendardbold"
-                    android:textSize="16sp"
-                    android:textColor="@color/text"
-                    android:text="Platinum 등급"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:textSize="12sp"
-                    android:textColor="@color/text"
-                    android:fontFamily="@font/pretendardregular"
-                    android:text="2000~4999 리워드 포인트 획득 시 달성"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/text"
-                    android:fontFamily="@font/pretendardsemibold"
-                    android:text="모든 상품 12% 할인"/>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_grade_diamond"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="81dp"
-                android:layout_height="81dp"
-                android:src="@drawable/img_grade_diamond"/>
-            <LinearLayout
-                android:layout_marginStart="13dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendardbold"
-                    android:textSize="16sp"
-                    android:textColor="@color/text"
-                    android:text="Diamond 등급"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:textSize="12sp"
-                    android:textColor="@color/text"
-                    android:fontFamily="@font/pretendardregular"
-                    android:text="5000 리워드 포인트 획득 시 달성"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/text"
-                    android:fontFamily="@font/pretendardsemibold"
-                    android:text="모든 상품 20% 할인"/>
-            </LinearLayout>
-        </LinearLayout>
+                    android:background="@drawable/bg_grade_diamond"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="81dp"
+                        android:layout_height="81dp"
+                        android:src="@drawable/img_grade_diamond"/>
+                    <LinearLayout
+                        android:layout_marginStart="13dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/pretendardbold"
+                            android:textSize="16sp"
+                            android:textColor="@color/text"
+                            android:text="Diamond 등급"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardregular"
+                            android:text="5000 리워드 포인트 획득 시 달성"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="@color/text"
+                            android:fontFamily="@font/pretendardsemibold"
+                            android:text="모든 상품 20% 할인"/>
+                    </LinearLayout>
+                </LinearLayout>
 
-    </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

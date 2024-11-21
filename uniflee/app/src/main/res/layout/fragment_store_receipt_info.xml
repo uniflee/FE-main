@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
-        android:layout_marginStart="39dp"
+        android:layout_marginStart="30dp"
         android:textSize="12sp"
         android:fontFamily="@font/pretendardbold"
         android:text="수령 안내" />
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginStart="39dp"
+        android:layout_marginStart="30dp"
         android:textSize="12sp"
         android:fontFamily="@font/pretendardregular"
         android:text="미래관 238호"/>
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:layout_marginStart="39dp"
+        android:layout_marginStart="30dp"
         android:textSize="12sp"
         android:fontFamily="@font/pretendardbold"
         android:text="안내사항" />
@@ -38,8 +38,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:layout_marginStart="39dp"
+        android:layout_marginStart="30dp"
         android:layout_marginEnd="48dp"
+        android:paddingBottom="80dp"
         android:textSize="12sp"
         android:fontFamily="@font/pretendardregular"
         android:text="플라스틱 사출 특성상 패턴이 상이합니다. \n제품 옆의 흠은 사출과정에서 생기는 과정이며 환불 및 교환이 되지 않습니다."/>

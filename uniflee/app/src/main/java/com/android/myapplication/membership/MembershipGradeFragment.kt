@@ -52,6 +52,9 @@ class MembershipGradeFragment : Fragment() {
                 Log.e("left",leftPoint.toString())
                 // 화면에 적용하기
                 binding.root.post {
+                    binding.data1.text = impact.plasticPrevented
+                    binding.data2.text = impact.energySaved
+                    binding.data3.text = impact.co2Reduced
                     binding.userName.text = App.prefs.getItem("name","noName")
                     binding.treeProtected.text = impact.treesProtected
                     binding.totalPoint.text = totalPoint.toString()
