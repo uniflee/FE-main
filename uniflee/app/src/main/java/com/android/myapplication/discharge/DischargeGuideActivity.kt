@@ -19,6 +19,7 @@ class DischargeGuideActivity : AppCompatActivity() {
     }
     var point: Int? = null // 외부에 Mutable 변수 선언
     var co2: Double? = null
+    var displayName = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,6 +31,7 @@ class DischargeGuideActivity : AppCompatActivity() {
         if (receivedPredict != null) {
             getInstructions(receivedPredict) { apiresponse ->
                 binding.itemType.text = apiresponse?.get(2) as String
+                displayName = apiresponse?.get(2) as String
                 binding.inst1.text = apiresponse.get(3) as String
                 binding.inst2.text = apiresponse.get(4) as String
                 binding.inst3.text = apiresponse.get(5) as String
@@ -40,11 +42,9 @@ class DischargeGuideActivity : AppCompatActivity() {
         }
 
         binding.goNewReward.setOnClickListener {
-            val intent = Intent(this, DischargeNewRewardActivity::class.java)
-            intent.putExtra("point",point.toString())
-            intent.putExtra("predict",receivedPredict)
-            intent.putExtra("co2",co2.toString())
-            startActivity(intent)
+            if (receivedPredict != null) {
+                IntentNext(displayName,receivedPredict)
+            }
         }
     }
 
@@ -70,6 +70,7 @@ class DischargeGuideActivity : AppCompatActivity() {
                 val ins2 = response.disposalInstructions2
                 val ins3 = response.disposalInstructions3
 
+
                 val rst = listOf(point, co2, displayName,ins1, ins2, ins3)
 
                 withContext(Dispatchers.Main) {
@@ -82,6 +83,15 @@ class DischargeGuideActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun IntentNext(displayName: String,receivedPredict:String) {
+        val intent = Intent(this, DischargeNewRewardActivity::class.java)
+        intent.putExtra("point",point.toString())
+        intent.putExtra("predict",receivedPredict)
+        intent.putExtra("displayName",displayName)
+        intent.putExtra("co2",co2.toString())
+        startActivity(intent)
     }
 
 
