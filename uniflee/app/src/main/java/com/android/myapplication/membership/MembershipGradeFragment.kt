@@ -63,21 +63,27 @@ class MembershipGradeFragment : Fragment() {
                     pb.progress = gradeAndNext(totalPoint)[3] as Int
                     Log.e("for PB", gradeAndNext(totalPoint)[3].toString())
 
-                    if (grade == "Bronze"){
-                        binding.gradeImage.setImageResource(R.drawable.img_grade_bronze)
-                        binding.gradeName.text = "Bronze 등급"
-                    } else if (grade == "Sliver"){
-                        binding.gradeImage.setImageResource(R.drawable.img_grade_silver)
-                        binding.gradeName.text = "Silver 등급"
-                    } else if (grade == "Gold"){
-                        binding.gradeImage.setImageResource(R.drawable.img_grade_gold)
-                        binding.gradeName.text = "Gold 등급"
-                    } else if (grade == "Platinum"){
-                        binding.gradeImage.setImageResource(R.drawable.img_grade_platinum)
-                        binding.gradeName.text = "Platinum 등급"
-                    } else if (grade == "Diamond"){
-                        binding.gradeImage.setImageResource(R.drawable.img_grade_diamond)
-                        binding.gradeName.text = "Diamond 등급"
+                    when(gradeAndNext(totalPoint)[0]) {
+                        "Bronze" -> {
+                            binding.gradeImage.setImageResource(R.drawable.img_grade_bronze)
+                            binding.gradeName.text = "Bronze 등급"
+                        }
+                        "Silver" -> {
+                            binding.gradeImage.setImageResource(R.drawable.img_grade_silver)
+                            binding.gradeName.text = "Silver 등급"
+                        }
+                        "Gold" -> {
+                            binding.gradeImage.setImageResource(R.drawable.img_grade_gold)
+                            binding.gradeName.text = "Gold 등급"
+                        }
+                        "Platinum" -> {
+                            binding.gradeImage.setImageResource(R.drawable.img_grade_platinum)
+                            binding.gradeName.text = "Platinum 등급"
+                        }
+                        "Diamond" -> {
+                            binding.gradeImage.setImageResource(R.drawable.img_grade_diamond)
+                            binding.gradeName.text = "Diamond 등급"
+                        }
                     }
                 }
             } catch (e: Exception) {

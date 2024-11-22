@@ -38,8 +38,9 @@ class OrderAdapter(private val itemList: List<OrderRecycler>) :
 
 //        holder.image.setImageResource(R.drawable.appicon) // 샘플 이미지
         // Glide로 이미지 로드
+        val finalImageUrl = "https://uniflee.alpha.cs.kookmin.ac.kr/uniflee-simple-storage-service/" + item.featuredImageUrl
         Glide.with(holder.itemView.context)
-            .load(item.featuredImageUrl) // 이미지 URL
+            .load(finalImageUrl) // 이미지 URL
             .placeholder(R.drawable.appicon) // 로딩 중 표시할 이미지
             .into(holder.image)
     }
