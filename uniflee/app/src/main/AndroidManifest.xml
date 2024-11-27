@@ -43,9 +43,9 @@
         <activity
             android:name=".store.StorePaymentActivity"
             android:exported="false" />
-        <activity
-            android:name=".store.StoreCartActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".store.StoreCartActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".store.StoreProductDetailsActivity"
             android:exported="false" />
