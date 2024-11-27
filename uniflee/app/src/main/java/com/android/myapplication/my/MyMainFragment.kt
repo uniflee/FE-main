@@ -16,8 +16,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class MyMainFragment : Fragment() {
     private var _binding: FragmentMyMainBinding?=null
@@ -76,7 +78,7 @@ class MyMainFragment : Fragment() {
         return ordersResponseDtoList.map { response ->
             Log.e("date",response.createdAt)
             OrderRecycler(
-                date = convertDateFormat(response.createdAt), // 날짜 임의로 지정
+                date = convertDateFormat(response.createdAt),
                 name = response.name,            // 제품명
                 designerName = response.designerName, // 디자이너 이름
                 featuredImageUrl = response.featuredImageUrl, // 이미지 URL
@@ -90,13 +92,17 @@ class MyMainFragment : Fragment() {
         _binding = null
     }
     fun convertDateFormat(date: String): String {
-        // 원래 문자열을 LocalDateTime 객체로 파싱
-        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
-        val dateTime = LocalDateTime.parse(date, inputFormatter)
+        // 입력 형식과 출력 형식을 정의
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
 
-        // 원하는 형식으로 변환
-        val outputFormatter = DateTimeFormatter.ofPattern("yy.MM.dd")
-        return dateTime.format(outputFormatter)
+        return try {
+            // 입력 문자열을 Date 객체로 파싱 후, 원하는 형식으로 변환
+            val data = inputFormat.parse(date)
+            data?.let { outputFormat.format(it) } ?: date.substring(0, 10)
+        } catch (e: Exception) {
+            date.substring(0, 10)
+        }
     }
 
 }
